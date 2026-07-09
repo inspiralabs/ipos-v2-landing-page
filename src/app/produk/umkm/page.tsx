@@ -69,7 +69,6 @@ export default function UmkmPage() {
     <main className="py-14 px-4">
       <div className="max-w-4xl mx-auto">
         <ProductHero
-          icon={<Cloud className="w-8 h-8" aria-hidden />}
           badge="iPOS Cloud · UMKM"
           title="Kasir Cloud untuk UMKM Kuliner"
           description="Kelola warung, kedai, atau toko makanan kamu dari mana saja — dengan sistem kasir cloud yang mudah dipakai dan terjangkau."

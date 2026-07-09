@@ -3,10 +3,6 @@
 
 import { Reveal } from './Reveal';
 
-// CompareTable dipisah ke file client tersendiri (pakai hook framer-motion) supaya file ini
-// (data + planFeaturesFromRows) tetap bisa dipanggil dari server component halaman produk.
-export { CompareTable } from './CompareTable';
-
 const Y = '✓';
 const N = '—';
 

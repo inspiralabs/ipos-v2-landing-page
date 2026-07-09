@@ -59,7 +59,6 @@ export default function FnbPage() {
     <main className="py-14 px-4">
       <div className="max-w-5xl mx-auto">
         <ProductHero
-          icon={<UtensilsCrossed className="w-8 h-8" aria-hidden />}
           badge="iPOS FnB · Resto"
           title="Sistem POS Lengkap untuk Restoran & Kafe"
           description="Dari denah meja hingga layar dapur, iPOS FnB menyiapkan semua yang kamu butuhkan untuk operasional restoran yang lancar."

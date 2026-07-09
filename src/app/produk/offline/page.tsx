@@ -50,7 +50,6 @@ export default function OfflinePage() {
     <main className="py-14 px-4">
       <div className="max-w-4xl mx-auto">
         <ProductHero
-          icon={<WifiOff className="w-8 h-8" aria-hidden />}
           badge="iPOS Offline"
           title="Tetap Berjalan Tanpa Internet"
           description="iPOS Offline adalah aplikasi kasir yang bekerja 100% di perangkat kamu. Cocok untuk warung, kios, dan usaha di area sinyal lemah."
