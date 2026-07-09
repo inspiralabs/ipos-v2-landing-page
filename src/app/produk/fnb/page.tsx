@@ -15,10 +15,10 @@ export const metadata: Metadata = {
 };
 
 const FEATURES = [
-  { icon: Armchair, title: 'Table Management', desc: 'Kelola meja, nomor antrian, dan status pesanan dengan mudah.' },
-  { icon: ChefHat, title: 'Kitchen Display', desc: 'Antrian pesanan langsung tampil di layar dapur, tanpa nota kertas.' },
-  { icon: Building2, title: 'Multi-Outlet', desc: 'Kelola sampai 10 cabang dari satu dashboard terpusat.' },
-  { icon: ClipboardList, title: 'BOM & Resep', desc: 'Hitung harga pokok (HPP) dan kendalikan penggunaan bahan.' },
+  { icon: <Armchair className="w-5 h-5" aria-hidden />, title: 'Table Management', desc: 'Kelola meja, nomor antrian, dan status pesanan dengan mudah.' },
+  { icon: <ChefHat className="w-5 h-5" aria-hidden />, title: 'Kitchen Display', desc: 'Antrian pesanan langsung tampil di layar dapur, tanpa nota kertas.' },
+  { icon: <Building2 className="w-5 h-5" aria-hidden />, title: 'Multi-Outlet', desc: 'Kelola sampai 10 cabang dari satu dashboard terpusat.' },
+  { icon: <ClipboardList className="w-5 h-5" aria-hidden />, title: 'BOM & Resep', desc: 'Hitung harga pokok (HPP) dan kendalikan penggunaan bahan.' },
 ];
 
 const PLANS: PricingPlan[] = [
@@ -57,29 +57,17 @@ const PLANS: PricingPlan[] = [
 export default function FnbPage() {
   return (
     <main className="py-14 px-4">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <ProductHero
           badge="iPOS FnB · Resto"
           title="Sistem POS Lengkap untuk Restoran & Kafe"
           description="Dari denah meja hingga layar dapur, iPOS FnB menyiapkan semua yang kamu butuhkan untuk operasional restoran yang lancar."
           image="https://assets.inspirapos.biz.id/hero-images/ipos-fnb-hero.webp"
           imageAlt="Tampilan aplikasi iPOS FnB"
+          features={FEATURES}
+          ctaHref="/demo?product=fnb"
+          ctaLabel="Coba Gratis 14 Hari"
         />
-
-        <RevealGroup className="grid grid-cols-2 gap-3 sm:gap-6 mb-14 max-w-3xl mx-auto">
-          {FEATURES.map((f) => {
-            const Icon = f.icon;
-            return (
-              <RevealItem key={f.title}>
-                <Card className="card-brand p-4 sm:p-6">
-                  <div className="icon-box mb-3 !p-2 sm:!p-3"><Icon className="w-5 h-5" aria-hidden /></div>
-                  <h3 className="font-bold text-charcoal mb-1 text-sm sm:text-base">{f.title}</h3>
-                  <p className="text-xs sm:text-sm text-charcoal/60">{f.desc}</p>
-                </Card>
-              </RevealItem>
-            );
-          })}
-        </RevealGroup>
 
         {/* Harga & perbandingan langsung di halaman produk */}
         <Reveal>

@@ -18,9 +18,9 @@ export const metadata: Metadata = {
 };
 
 const FEATURES = [
-  { icon: MonitorSmartphone, title: 'Multi-Device', desc: 'Akses dari HP, tablet, atau laptop. Data tersinkron otomatis.' },
-  { icon: PackageSearch, title: 'Manajemen Stok', desc: 'Pantau stok bahan dan produk. Ada peringatan saat hampir habis.' },
-  { icon: Users, title: 'Multi-Kasir', desc: 'Buka shift kasir, pantau siapa yang melayani tiap transaksi.' },
+  { icon: <MonitorSmartphone className="w-5 h-5" aria-hidden />, title: 'Multi-Device', desc: 'Akses dari HP, tablet, atau laptop. Data tersinkron otomatis.' },
+  { icon: <PackageSearch className="w-5 h-5" aria-hidden />, title: 'Manajemen Stok', desc: 'Pantau stok bahan dan produk. Ada peringatan saat hampir habis.' },
+  { icon: <Users className="w-5 h-5" aria-hidden />, title: 'Multi-Kasir', desc: 'Buka shift kasir, pantau siapa yang melayani tiap transaksi.' },
 ];
 
 // Add-on iPOS Cloud — docs/PRICING.md §2 (PRD §5.1). Hanya untuk paket Cloud;
@@ -67,31 +67,17 @@ const PLANS: PricingPlan[] = [
 export default function UmkmPage() {
   return (
     <main className="py-14 px-4">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <ProductHero
           badge="iPOS Cloud · UMKM"
           title="Kasir Cloud untuk UMKM Kuliner"
           description="Kelola warung, kedai, atau toko makanan kamu dari mana saja — dengan sistem kasir cloud yang mudah dipakai dan terjangkau."
           image="https://assets.inspirapos.biz.id/hero-images/ipos-umkm-hero.webp"
           imageAlt="Tampilan aplikasi iPOS Cloud UMKM"
+          features={FEATURES}
+          ctaHref="/demo?product=umkm"
+          ctaLabel="Coba Gratis 14 Hari"
         />
-
-        <RevealGroup className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6 mb-14">
-          {FEATURES.map((f) => {
-            const Icon = f.icon;
-            return (
-              <RevealItem key={f.title}>
-                <Card className="card-brand p-4 sm:p-6 flex sm:block items-start gap-4">
-                  <div className="icon-box mb-0 sm:mb-3 shrink-0"><Icon className="w-5 h-5" aria-hidden /></div>
-                  <div>
-                    <h3 className="font-bold text-charcoal mb-1 text-sm sm:text-base">{f.title}</h3>
-                    <p className="text-xs sm:text-sm text-charcoal/60">{f.desc}</p>
-                  </div>
-                </Card>
-              </RevealItem>
-            );
-          })}
-        </RevealGroup>
 
         {/* Harga & perbandingan langsung di halaman produk */}
         <Reveal>

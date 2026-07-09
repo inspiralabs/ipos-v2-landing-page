@@ -1,13 +1,17 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, useReducedMotion, type Variants } from 'framer-motion';
+import { Card } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
+import type { ReactNode } from 'react';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 const container: Variants = {
   hidden: {},
-  visible: { transition: { staggerChildren: 0.12 } },
+  visible: { transition: { staggerChildren: 0.1 } },
 };
 
 const item: Variants = {
@@ -15,22 +19,35 @@ const item: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: EASE } },
 };
 
+type Feature = { icon: ReactNode; title: string; desc: string };
+
 type ProductHeroProps = {
   badge: string;
   title: string;
   description: string;
   image: string;
   imageAlt: string;
+  features: Feature[];
+  ctaHref: string;
+  ctaLabel: string;
 };
 
-/** Hero halaman /produk/* — stagger entrance, gambar statis di bawah teks. */
-export function ProductHero({ badge, title, description, image, imageAlt }: ProductHeroProps) {
+/** Hero halaman /produk/* — foto kiri, badge+judul+deskripsi+CTA+fitur di kolom kanan. */
+export function ProductHero({ badge, title, description, image, imageAlt, features, ctaHref, ctaLabel }: ProductHeroProps) {
   const reduce = useReducedMotion();
 
   return (
-    <div className="max-w-4xl mx-auto mb-10">
+    <div className="max-w-6xl mx-auto mb-14 grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
       <motion.div
-        className="text-center"
+        className="lg:sticky lg:top-24 rounded-xl overflow-hidden border border-line shadow-[0_8px_32px_rgba(110,21,15,0.14)]"
+        initial={reduce ? false : { opacity: 0, scale: 0.97 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.75, ease: EASE }}
+      >
+        <Image src={image} alt={imageAlt} width={1376} height={768} priority className="w-full h-auto" />
+      </motion.div>
+
+      <motion.div
         initial={reduce ? false : 'hidden'}
         animate="visible"
         variants={container}
@@ -39,9 +56,19 @@ export function ProductHero({ badge, title, description, image, imageAlt }: Prod
           {badge}
         </motion.span>
         <motion.h1 variants={item} className="text-3xl font-extrabold text-charcoal mb-3">{title}</motion.h1>
-        <motion.p variants={item} className="text-charcoal/60 max-w-xl mx-auto mb-8">{description}</motion.p>
-        <motion.div variants={item} className="rounded-xl overflow-hidden border border-line shadow-[0_8px_32px_rgba(110,21,15,0.14)]">
-          <Image src={image} alt={imageAlt} width={1376} height={768} priority className="w-full h-auto" />
+        <motion.p variants={item} className="text-charcoal/60 mb-6">{description}</motion.p>
+        <motion.div variants={item} className="mb-8">
+          <Button asChild variant="gold"><Link href={ctaHref}>{ctaLabel}</Link></Button>
+        </motion.div>
+
+        <motion.div variants={item} className="grid sm:grid-cols-2 gap-3">
+          {features.map((f) => (
+            <Card key={f.title} className="card-brand p-4">
+              <div className="icon-box mb-2.5 !p-2">{f.icon}</div>
+              <h3 className="font-bold text-charcoal mb-1 text-sm">{f.title}</h3>
+              <p className="text-xs text-charcoal/60">{f.desc}</p>
+            </Card>
+          ))}
         </motion.div>
       </motion.div>
     </div>

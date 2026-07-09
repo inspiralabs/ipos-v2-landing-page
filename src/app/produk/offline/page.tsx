@@ -15,10 +15,10 @@ export const metadata: Metadata = {
 };
 
 const FEATURES = [
-  { icon: WifiOff, title: 'Tanpa Internet', desc: 'Semua data tersimpan di perangkat. Tidak ada koneksi = tidak ada masalah.' },
-  { icon: KeyRound, title: 'Sekali Bayar per Perangkat', desc: 'Beli sekali, pakai selamanya di perangkat yang sama. Tidak ada langganan bulanan.' },
-  { icon: Smartphone, title: 'Cepat & Ringan', desc: 'Aplikasi ringan, bisa di-install di HP/tablet Android maupun laptop.' },
-  { icon: BarChart3, title: 'Laporan di Perangkat', desc: 'Omzet harian, menu terlaris, sampai laba rugi — langsung di HP kamu.' },
+  { icon: <WifiOff className="w-5 h-5" aria-hidden />, title: 'Tanpa Internet', desc: 'Semua data tersimpan di perangkat. Tidak ada koneksi = tidak ada masalah.' },
+  { icon: <KeyRound className="w-5 h-5" aria-hidden />, title: 'Sekali Bayar per Perangkat', desc: 'Beli sekali, pakai selamanya di perangkat yang sama. Tidak ada langganan bulanan.' },
+  { icon: <Smartphone className="w-5 h-5" aria-hidden />, title: 'Cepat & Ringan', desc: 'Aplikasi ringan, bisa di-install di HP/tablet Android maupun laptop.' },
+  { icon: <BarChart3 className="w-5 h-5" aria-hidden />, title: 'Laporan di Perangkat', desc: 'Omzet harian, menu terlaris, sampai laba rugi — langsung di HP kamu.' },
 ];
 
 const PLANS: PricingPlan[] = [
@@ -48,29 +48,17 @@ const PLANS: PricingPlan[] = [
 export default function OfflinePage() {
   return (
     <main className="py-14 px-4">
-      <div className="max-w-4xl mx-auto">
+      <div className="max-w-6xl mx-auto">
         <ProductHero
           badge="iPOS Offline"
           title="Tetap Berjalan Tanpa Internet"
           description="iPOS Offline adalah aplikasi kasir yang bekerja 100% di perangkat kamu. Cocok untuk warung, kios, dan usaha di area sinyal lemah."
           image="https://assets.inspirapos.biz.id/hero-images/ipos-offline-hero.webp"
           imageAlt="Tampilan aplikasi iPOS Offline"
+          features={FEATURES}
+          ctaHref="/demo?product=offline"
+          ctaLabel="Coba Gratis 14 Hari"
         />
-
-        <RevealGroup className="grid grid-cols-2 gap-3 sm:gap-6 mb-14">
-          {FEATURES.map((f) => {
-            const Icon = f.icon;
-            return (
-              <RevealItem key={f.title}>
-                <Card className="card-brand p-4 sm:p-6">
-                  <div className="icon-box mb-3 !p-2 sm:!p-3"><Icon className="w-5 h-5" aria-hidden /></div>
-                  <h3 className="font-bold text-charcoal mb-1 text-sm sm:text-base">{f.title}</h3>
-                  <p className="text-xs sm:text-sm text-charcoal/60">{f.desc}</p>
-                </Card>
-              </RevealItem>
-            );
-          })}
-        </RevealGroup>
 
         {/* Harga & perbandingan langsung di halaman produk */}
         <Reveal>
