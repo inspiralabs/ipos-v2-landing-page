@@ -7,7 +7,10 @@ import {
 import { SegmentHeader, UMKM_ROWS, planFeaturesFromRows } from '@/components/Compare';
 import { kontakLink } from '@/lib/site';
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal';
+import { ProductHero } from '@/components/ProductHero';
 import { PricingSection, type PricingPlan } from '@/components/PricingSection';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'iPOS Cloud — Kasir Cloud untuk Toko & Kafe',
@@ -65,23 +68,27 @@ export default function UmkmPage() {
   return (
     <main className="py-14 px-4">
       <div className="max-w-4xl mx-auto">
-        <Reveal className="text-center mb-10">
-          <div className="icon-box !p-4 mb-4 mx-auto w-fit"><Cloud className="w-8 h-8" aria-hidden /></div>
-          <span className="inline-block bg-gold-bright/30 text-maroon-deep text-xs font-bold px-3 py-1 rounded-full mb-4">iPOS Cloud · UMKM</span>
-          <h1 className="text-3xl font-extrabold text-charcoal mb-3">Kasir Cloud untuk UMKM Kuliner</h1>
-          <p className="text-charcoal/60 max-w-xl mx-auto">Kelola warung, kedai, atau toko makanan kamu dari mana saja — dengan sistem kasir cloud yang mudah dipakai dan terjangkau.</p>
-        </Reveal>
+        <ProductHero
+          icon={<Cloud className="w-8 h-8" aria-hidden />}
+          badge="iPOS Cloud · UMKM"
+          title="Kasir Cloud untuk UMKM Kuliner"
+          description="Kelola warung, kedai, atau toko makanan kamu dari mana saja — dengan sistem kasir cloud yang mudah dipakai dan terjangkau."
+          image="https://assets.inspirapos.biz.id/hero-images/ipos-umkm-hero.webp"
+          imageAlt="Tampilan aplikasi iPOS Cloud UMKM"
+        />
 
         <RevealGroup className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6 mb-14">
           {FEATURES.map((f) => {
             const Icon = f.icon;
             return (
-              <RevealItem key={f.title} className="card-brand p-4 sm:p-6 flex sm:block items-start gap-4">
-                <div className="icon-box mb-0 sm:mb-3 shrink-0"><Icon className="w-5 h-5" aria-hidden /></div>
-                <div>
-                  <h3 className="font-bold text-charcoal mb-1 text-sm sm:text-base">{f.title}</h3>
-                  <p className="text-xs sm:text-sm text-charcoal/60">{f.desc}</p>
-                </div>
+              <RevealItem key={f.title}>
+                <Card className="card-brand p-4 sm:p-6 flex sm:block items-start gap-4">
+                  <div className="icon-box mb-0 sm:mb-3 shrink-0"><Icon className="w-5 h-5" aria-hidden /></div>
+                  <div>
+                    <h3 className="font-bold text-charcoal mb-1 text-sm sm:text-base">{f.title}</h3>
+                    <p className="text-xs sm:text-sm text-charcoal/60">{f.desc}</p>
+                  </div>
+                </Card>
               </RevealItem>
             );
           })}
@@ -110,13 +117,15 @@ export default function UmkmPage() {
             {ADDONS.map((a) => {
               const Icon = a.icon;
               return (
-                <RevealItem key={a.name} className="card-brand p-4 flex items-center gap-3">
-                  <div className="icon-box !p-2.5 shrink-0"><Icon className="w-5 h-5" aria-hidden /></div>
-                  <div className="flex-1 min-w-0">
-                    <p className="font-bold text-charcoal text-sm">{a.name}</p>
-                    <p className="text-xs text-charcoal/60">{a.desc}</p>
-                  </div>
-                  <p className="text-sm font-extrabold text-maroon-deep shrink-0 text-right">{a.price}</p>
+                <RevealItem key={a.name}>
+                  <Card className="card-brand p-4 flex items-center gap-3">
+                    <div className="icon-box !p-2.5 shrink-0"><Icon className="w-5 h-5" aria-hidden /></div>
+                    <div className="flex-1 min-w-0">
+                      <p className="font-bold text-charcoal text-sm">{a.name}</p>
+                      <p className="text-xs text-charcoal/60">{a.desc}</p>
+                    </div>
+                    <p className="text-sm font-extrabold text-maroon-deep shrink-0 text-right">{a.price}</p>
+                  </Card>
                 </RevealItem>
               );
             })}
@@ -129,10 +138,12 @@ export default function UmkmPage() {
           </p>
         </div>
 
-        <Reveal className="card-gold p-6 sm:p-8 text-center mt-10">
-          <h2 className="font-extrabold text-xl text-charcoal mb-2">Belum yakin? Coba dulu gratis</h2>
-          <p className="text-charcoal/60 mb-6">Trial gratis 14 hari — semua fitur terbuka, maksimal 20 menu & 50 transaksi. Tidak perlu kartu kredit.</p>
-          <Link href="/demo" className="btn-gold">Coba Gratis 14 Hari</Link>
+        <Reveal className="mt-10">
+          <Card className="card-gold p-6 sm:p-8 text-center">
+            <h2 className="font-extrabold text-xl text-charcoal mb-2">Belum yakin? Coba dulu gratis</h2>
+            <p className="text-charcoal/60 mb-6">Trial gratis 14 hari — semua fitur terbuka, maksimal 20 menu & 50 transaksi. Tidak perlu kartu kredit.</p>
+            <Button asChild variant="gold"><Link href="/demo?product=umkm">Coba Gratis 14 Hari</Link></Button>
+          </Card>
         </Reveal>
       </div>
     </main>

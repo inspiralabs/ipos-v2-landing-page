@@ -1,4 +1,7 @@
+'use client';
+
 import { RevealGroup, RevealItem } from '@/components/Reveal';
+import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui/accordion';
 
 // FAQ utama — tampil di homepage (#faq). Jawaban jujur, bahasa warung.
 const FAQS: [string, string][] = [
@@ -17,17 +20,16 @@ const FAQS: [string, string][] = [
 export function Faq() {
   return (
     <RevealGroup className="space-y-3" stagger={0.05}>
-      {FAQS.map(([q, a]) => (
-        <RevealItem key={q}>
-          <details className="card-brand px-6 py-4 group">
-            <summary className="font-bold text-charcoal cursor-pointer list-none flex justify-between items-center gap-4 min-h-11">
-              {q}
-              <span className="text-maroon-deep shrink-0 group-open:rotate-45 transition-transform text-xl leading-none" aria-hidden>+</span>
-            </summary>
-            <p className="text-sm text-charcoal/70 leading-relaxed mt-3">{a}</p>
-          </details>
-        </RevealItem>
-      ))}
+      <Accordion type="single" collapsible>
+        {FAQS.map(([q, a]) => (
+          <RevealItem key={q} className="mb-3">
+            <AccordionItem value={q}>
+              <AccordionTrigger>{q}</AccordionTrigger>
+              <AccordionContent>{a}</AccordionContent>
+            </AccordionItem>
+          </RevealItem>
+        ))}
+      </Accordion>
     </RevealGroup>
   );
 }

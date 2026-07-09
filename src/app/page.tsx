@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import type { Metadata } from 'next';
 import {
   WifiOff, Cloud, UtensilsCrossed, Rocket, Store, BadgeCheck,
@@ -9,6 +8,10 @@ import {
 import { CONTACT, waLink, kontakLink } from '@/lib/site';
 import { Faq } from '@/components/Faq';
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal';
+import { Hero } from '@/components/Hero';
+import { AppShowcase } from '@/components/AppShowcase';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'Inspira POS - Kasir untuk UMKM & Restoran, Tetap Jalan Tanpa Internet',
@@ -64,37 +67,9 @@ const FEATURES = [
 export default function HomePage() {
   return (
     <main>
-      {/* Hero — teks kiri, visual kanan (design system: grid 12) */}
-      <section className="py-14 lg:py-20 px-4">
-        <Reveal className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          <div className="lg:col-span-7 text-center lg:text-left">
-            <h1 className="text-4xl md:text-5xl font-extrabold text-charcoal mb-4 leading-tight">
-              Kasir yang Tetap Jalan <span className="text-maroon-deep">Walau Internet Mati</span>
-            </h1>
-            <p className="text-lg text-charcoal/60 mb-8 max-w-2xl mx-auto lg:mx-0">
-              Inspira POS - kasir pintar untuk UMKM kuliner dan restoran Indonesia.
-              Catat jualan, kelola stok, lihat untung. Mulai Rp 149 ribu/bulan atau sekali bayar Rp 299 ribu.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
-              <Link href="/demo" className="btn-gold">Coba Gratis 14 Hari</Link>
-              <a href={kontakLink('Halo, saya mau tanya tentang Inspira POS.')} target="_blank" rel="noreferrer" className="btn-outline">
-                <MessageCircle className="w-4 h-4" aria-hidden /> Tanya Dulu via WA
-              </a>
-            </div>
-            <p className="text-xs text-charcoal/50 mt-3">Coba 14 hari gratis, tanpa kartu kredit.</p>
-          </div>
-          <div className="hidden lg:block lg:col-span-5">
-            <Image
-              src="/og-image.jpeg"
-              alt="Tampilan aplikasi kasir Inspira POS"
-              width={1200}
-              height={630}
-              priority
-              className="rounded-xl border border-line shadow-[0_8px_32px_rgba(110,21,15,0.14)] w-full h-auto"
-            />
-          </div>
-        </Reveal>
-      </section>
+      <Hero />
+
+      <AppShowcase />
 
       {/* Pilih jalur */}
       <section className="py-12 lg:py-16 px-4 bg-surface border-y border-line">
@@ -108,30 +83,27 @@ export default function HomePage() {
               const Icon = p.icon;
               const dark = p.featured;
               return (
-                <RevealItem key={p.badge} className={`${dark ? 'card-dark' : 'card-brand'} p-6 flex flex-col`}>
-                  <div className={`${dark ? 'rounded-xl bg-white/10 p-3 text-gold-bright' : 'icon-box'} w-fit mb-3`}>
-                    <Icon className="w-6 h-6" aria-hidden />
-                  </div>
-                  <span className={`inline-block text-xs font-bold px-3 py-1 rounded-full mb-3 w-fit ${dark ? 'bg-white/10 text-white/80' : 'bg-gold-bright/30 text-maroon-deep'}`}>
-                    {p.badge}
-                  </span>
-                  <p className={`text-sm mb-2 ${dark ? 'text-white/60' : 'text-charcoal/60'}`}>{p.q}</p>
-                  <h3 className={`font-extrabold text-lg mb-3 ${dark ? 'text-white' : 'text-charcoal'}`}>{p.title}</h3>
-                  <ul className="space-y-2 flex-1 mb-4">
-                    {p.points.map((pt) => (
-                      <li key={pt} className={`text-sm flex items-start gap-2 ${dark ? 'text-white/75' : 'text-charcoal/70'}`}>
-                        <Check className={`w-4 h-4 shrink-0 mt-0.5 ${dark ? 'text-gold-bright' : 'text-maroon-deep'}`} aria-hidden /> {pt}
-                      </li>
-                    ))}
-                  </ul>
-                  <Link
-                    href={p.href}
-                    className={dark
-                      ? 'rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-maroon-deep text-center hover:scale-105 transition-transform min-h-11 flex items-center justify-center'
-                      : 'btn-gold text-center'}
-                  >
-                    Lihat Fitur & Harga
-                  </Link>
+                <RevealItem key={p.badge}>
+                  <Card className={`${dark ? 'card-dark' : 'card-brand'} p-6 flex flex-col h-full`}>
+                    <div className={`${dark ? 'rounded-xl bg-white/10 p-3 text-gold-bright' : 'icon-box'} w-fit mb-3`}>
+                      <Icon className="w-6 h-6" aria-hidden />
+                    </div>
+                    <span className={`inline-block text-xs font-bold px-3 py-1 rounded-full mb-3 w-fit ${dark ? 'bg-white/10 text-white/80' : 'bg-gold-bright/30 text-maroon-deep'}`}>
+                      {p.badge}
+                    </span>
+                    <p className={`text-sm mb-2 ${dark ? 'text-white/60' : 'text-charcoal/60'}`}>{p.q}</p>
+                    <h3 className={`font-extrabold text-lg mb-3 ${dark ? 'text-white' : 'text-charcoal'}`}>{p.title}</h3>
+                    <ul className="space-y-2 flex-1 mb-4">
+                      {p.points.map((pt) => (
+                        <li key={pt} className={`text-sm flex items-start gap-2 ${dark ? 'text-white/75' : 'text-charcoal/70'}`}>
+                          <Check className={`w-4 h-4 shrink-0 mt-0.5 ${dark ? 'text-gold-bright' : 'text-maroon-deep'}`} aria-hidden /> {pt}
+                        </li>
+                      ))}
+                    </ul>
+                    <Button asChild variant={dark ? 'dark' : 'gold'} className="text-center">
+                      <Link href={p.href}>Lihat Fitur & Harga</Link>
+                    </Button>
+                  </Card>
                 </RevealItem>
               );
             })}
@@ -150,12 +122,14 @@ export default function HomePage() {
             {STEPS.map((s, i) => {
               const Icon = s.icon;
               return (
-                <RevealItem key={s.t} className="card-brand p-5 flex sm:block items-start gap-4">
-                  <div className="icon-box mb-0 sm:mb-3 shrink-0"><Icon className="w-5 h-5" aria-hidden /></div>
-                  <div>
-                    <h3 className="font-bold text-charcoal mb-1">{i + 1}. {s.t}</h3>
-                    <p className="text-sm text-charcoal/60 leading-relaxed">{s.d}</p>
-                  </div>
+                <RevealItem key={s.t}>
+                  <Card className="card-brand p-5 flex sm:block items-start gap-4">
+                    <div className="icon-box mb-0 sm:mb-3 shrink-0"><Icon className="w-5 h-5" aria-hidden /></div>
+                    <div>
+                      <h3 className="font-bold text-charcoal mb-1">{i + 1}. {s.t}</h3>
+                      <p className="text-sm text-charcoal/60 leading-relaxed">{s.d}</p>
+                    </div>
+                  </Card>
                 </RevealItem>
               );
             })}
@@ -174,10 +148,12 @@ export default function HomePage() {
             {FEATURES.map((f) => {
               const Icon = f.icon;
               return (
-                <RevealItem key={f.t} className="card-brand p-4 sm:p-5">
-                  <div className="icon-box mb-2.5 !p-2"><Icon className="w-5 h-5" aria-hidden /></div>
-                  <h3 className="font-bold text-charcoal text-sm mb-0.5">{f.t}</h3>
-                  <p className="text-xs sm:text-sm text-charcoal/60 leading-relaxed">{f.d}</p>
+                <RevealItem key={f.t}>
+                  <Card className="card-brand p-4 sm:p-5">
+                    <div className="icon-box mb-2.5 !p-2"><Icon className="w-5 h-5" aria-hidden /></div>
+                    <h3 className="font-bold text-charcoal text-sm mb-0.5">{f.t}</h3>
+                    <p className="text-xs sm:text-sm text-charcoal/60 leading-relaxed">{f.d}</p>
+                  </Card>
                 </RevealItem>
               );
             })}
@@ -188,7 +164,7 @@ export default function HomePage() {
       {/* Trust — klien nyata, tanpa kutipan karangan */}
       <section className="py-12 lg:py-16 px-4">
         <Reveal className="max-w-4xl mx-auto">
-          <div className="card-gold p-6 sm:p-8 text-center">
+          <Card className="card-gold p-6 sm:p-8 text-center">
             <ChefHat className="w-8 h-8 text-maroon-deep mx-auto mb-3" aria-hidden />
             <h2 className="text-xl sm:text-2xl font-extrabold text-charcoal mb-2">
               Sudah Dipakai Jualan Beneran, Setiap Hari
@@ -200,7 +176,7 @@ export default function HomePage() {
             <p className="text-xs text-charcoal/50">
               Sudah pakai Inspira POS dan mau ceritamu tampil di sini? <a className="text-maroon-deep font-semibold hover:underline" href={waLink('Halo, saya pengguna Inspira POS dan mau berbagi pengalaman.')} target="_blank" rel="noreferrer">Kabari kami</a>.
             </p>
-          </div>
+          </Card>
         </Reveal>
       </section>
 
@@ -220,21 +196,12 @@ export default function HomePage() {
           <h2 className="text-2xl md:text-3xl font-extrabold mb-3">Coba Dulu 14 Hari. Gratis, Tanpa Syarat.</h2>
           <p className="text-white/70 mb-8">Kalau cocok, lanjut. Kalau tidak, data kamu tetap milik kamu. Masih ragu? Ngobrol dulu saja - kami bantu pilihkan, bukan jualan paket paling mahal.</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
-            <Link href="/demo" className="btn-gold">Coba Gratis 14 Hari</Link>
-            <a href={kontakLink('Halo, saya mau konsultasi paket Inspira POS untuk usaha saya.')} target="_blank" rel="noreferrer" className="btn-wa">
-              <MessageCircle className="w-4 h-4" aria-hidden /> Chat WhatsApp
-            </a>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-8 justify-center text-sm text-white/70">
-            <a href={kontakLink('Halo, saya mau tanya tentang Inspira POS.')} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 hover:text-gold-bright min-h-11">
-              <MessageCircle className="w-4 h-4" aria-hidden /> {CONTACT.waDisplay}
-            </a>
-            <a href={`mailto:${CONTACT.email}`} className="flex items-center justify-center gap-2 hover:text-gold-bright min-h-11">
-              <Mail className="w-4 h-4" aria-hidden /> {CONTACT.email}
-            </a>
-            <a href={CONTACT.website} target="_blank" rel="noreferrer" className="flex items-center justify-center gap-2 hover:text-gold-bright min-h-11">
-              <Globe className="w-4 h-4" aria-hidden /> {CONTACT.websiteDisplay}
-            </a>
+            <Button asChild variant="gold"><Link href="/demo">Coba Gratis 14 Hari</Link></Button>
+            <Button asChild variant="wa">
+              <a href={kontakLink('Halo, saya mau konsultasi paket Inspira POS untuk usaha saya.')} target="_blank" rel="noreferrer">
+                <MessageCircle className="w-4 h-4" aria-hidden /> Chat WhatsApp
+              </a>
+            </Button>
           </div>
         </Reveal>
       </section>

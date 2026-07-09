@@ -1,6 +1,12 @@
 // Tabel perbandingan paket — tersemat di tiap halaman produk.
 // Sumber angka: docs/PRICING.md (trial 14 hari, harga serba-9).
 
+import { Reveal } from './Reveal';
+
+// CompareTable dipisah ke file client tersendiri (pakai hook framer-motion) supaya file ini
+// (data + planFeaturesFromRows) tetap bisa dipanggil dari server component halaman produk.
+export { CompareTable } from './CompareTable';
+
 const Y = '✓';
 const N = '—';
 
@@ -82,45 +88,13 @@ export function SegmentHeader({ id, badge, title, desc }: {
   id?: string; badge: string; title: string; desc: string;
 }) {
   return (
-    <div id={id} className="text-center mb-8 scroll-mt-24">
-      <span className="inline-block bg-gold-bright/30 text-maroon-deep text-xs font-bold px-3 py-1 rounded-full mb-3">{badge}</span>
-      <h2 className="text-2xl font-extrabold text-charcoal mb-2">{title}</h2>
-      <p className="text-charcoal/60 max-w-2xl mx-auto text-sm leading-relaxed">{desc}</p>
-    </div>
+    <Reveal>
+      <div id={id} className="text-center mb-8 scroll-mt-24">
+        <span className="inline-block bg-gold-bright/30 text-maroon-deep text-xs font-bold px-3 py-1 rounded-full mb-3">{badge}</span>
+        <h2 className="text-2xl font-extrabold text-charcoal mb-2">{title}</h2>
+        <p className="text-charcoal/60 max-w-2xl mx-auto text-sm leading-relaxed">{desc}</p>
+      </div>
+    </Reveal>
   );
 }
 
-export function CompareTable({ headers, rows, highlightCol }: {
-  headers: string[];
-  rows: string[][];
-  highlightCol?: number;
-}) {
-  return (
-    <div className="overflow-x-auto card-brand">
-      <table className="w-full text-sm min-w-[560px]">
-        <thead>
-          <tr className="border-b-2 border-gold-antique/25">
-            {headers.map((h, i) => (
-              <th key={h} className={`text-left px-4 py-3.5 font-extrabold ${i === 0 ? 'text-charcoal w-2/5' : 'text-center'} ${i === highlightCol ? 'text-maroon-deep bg-gold-bright/10' : 'text-charcoal'}`}>
-                {h}{i === highlightCol && <span className="block text-[10px] font-bold text-gold-antique">TERLARIS</span>}
-              </th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r, ri) => (
-            <tr key={r[0]} className={ri % 2 ? 'bg-cream/50' : ''}>
-              {r.map((cell, ci) => (
-                <td key={ci} className={`px-4 py-2.5 ${ci === 0 ? 'text-charcoal/80' : 'text-center'} ${ci === highlightCol ? 'bg-gold-bright/10' : ''} ${ri === 0 && ci > 0 ? 'font-extrabold text-maroon-deep' : ''}`}>
-                  {cell === '✓' ? <span className="text-maroon-deep font-bold" aria-label="termasuk">✓</span>
-                    : cell === '—' ? <span className="text-charcoal/30" aria-label="tidak termasuk">—</span>
-                    : cell}
-                </td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
-}

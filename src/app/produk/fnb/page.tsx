@@ -4,7 +4,10 @@ import { Armchair, ChefHat, Building2, ClipboardList, UtensilsCrossed } from 'lu
 import { SegmentHeader, RESTO_ROWS, planFeaturesFromRows } from '@/components/Compare';
 import { kontakLink } from '@/lib/site';
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal';
+import { ProductHero } from '@/components/ProductHero';
 import { PricingSection, type PricingPlan } from '@/components/PricingSection';
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
   title: 'iPOS FnB — Sistem POS untuk Restoran',
@@ -55,21 +58,25 @@ export default function FnbPage() {
   return (
     <main className="py-14 px-4">
       <div className="max-w-5xl mx-auto">
-        <Reveal className="text-center mb-10">
-          <div className="icon-box !p-4 mb-4 mx-auto w-fit"><UtensilsCrossed className="w-8 h-8" aria-hidden /></div>
-          <span className="inline-block bg-gold-bright/30 text-maroon-deep text-xs font-bold px-3 py-1 rounded-full mb-4">iPOS FnB · Resto</span>
-          <h1 className="text-3xl font-extrabold text-charcoal mb-3">Sistem POS Lengkap untuk Restoran & Kafe</h1>
-          <p className="text-charcoal/60 max-w-xl mx-auto">Dari denah meja hingga layar dapur, iPOS FnB menyiapkan semua yang kamu butuhkan untuk operasional restoran yang lancar.</p>
-        </Reveal>
+        <ProductHero
+          icon={<UtensilsCrossed className="w-8 h-8" aria-hidden />}
+          badge="iPOS FnB · Resto"
+          title="Sistem POS Lengkap untuk Restoran & Kafe"
+          description="Dari denah meja hingga layar dapur, iPOS FnB menyiapkan semua yang kamu butuhkan untuk operasional restoran yang lancar."
+          image="https://assets.inspirapos.biz.id/hero-images/ipos-fnb-hero.webp"
+          imageAlt="Tampilan aplikasi iPOS FnB"
+        />
 
         <RevealGroup className="grid grid-cols-2 gap-3 sm:gap-6 mb-14 max-w-3xl mx-auto">
           {FEATURES.map((f) => {
             const Icon = f.icon;
             return (
-              <RevealItem key={f.title} className="card-brand p-4 sm:p-6">
-                <div className="icon-box mb-3 !p-2 sm:!p-3"><Icon className="w-5 h-5" aria-hidden /></div>
-                <h3 className="font-bold text-charcoal mb-1 text-sm sm:text-base">{f.title}</h3>
-                <p className="text-xs sm:text-sm text-charcoal/60">{f.desc}</p>
+              <RevealItem key={f.title}>
+                <Card className="card-brand p-4 sm:p-6">
+                  <div className="icon-box mb-3 !p-2 sm:!p-3"><Icon className="w-5 h-5" aria-hidden /></div>
+                  <h3 className="font-bold text-charcoal mb-1 text-sm sm:text-base">{f.title}</h3>
+                  <p className="text-xs sm:text-sm text-charcoal/60">{f.desc}</p>
+                </Card>
               </RevealItem>
             );
           })}
@@ -85,10 +92,12 @@ export default function FnbPage() {
         </Reveal>
         <PricingSection plans={PLANS} billing />
 
-        <Reveal className="card-gold p-6 sm:p-8 text-center mt-10">
-          <h2 className="font-extrabold text-xl text-charcoal mb-2">Belum yakin? Jadwalkan demo gratis</h2>
-          <p className="text-charcoal/60 mb-6">Termasuk kitchen display & table management. Trial gratis 14 hari — semua fitur terbuka, maksimal 20 menu & 50 transaksi.</p>
-          <Link href="/demo" className="btn-gold">Jadwalkan Demo Gratis</Link>
+        <Reveal className="mt-10">
+          <Card className="card-gold p-6 sm:p-8 text-center">
+            <h2 className="font-extrabold text-xl text-charcoal mb-2">Belum yakin? Jadwalkan demo gratis</h2>
+            <p className="text-charcoal/60 mb-6">Termasuk kitchen display & table management. Trial gratis 14 hari — semua fitur terbuka, maksimal 20 menu & 50 transaksi.</p>
+            <Button asChild variant="gold"><Link href="/demo?product=fnb">Jadwalkan Demo Gratis</Link></Button>
+          </Card>
         </Reveal>
       </div>
     </main>

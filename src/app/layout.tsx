@@ -13,11 +13,11 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://inspirapos.biz.id'),
   icons: {
     icon: [
-      { url: '/favicon-16x16.jpg', sizes: '16x16', type: 'image/jpeg' },
-      { url: '/favicon-32x-32.jpg', sizes: '32x32', type: 'image/jpeg' },
-      { url: '/inspirapos-icon.ico' },
+      { url: '/inspirapos-icon.svg', sizes: '16x16', type: 'image/jpeg' },
+      { url: '/inspirapos-icon.svg', sizes: '32x32', type: 'image/jpeg' },
+      { url: '/inspirapos-icon.svg' },
     ],
-    apple: '/apple-touch-icon.jpg',
+    apple: '/inspirapos-icon.svg',
   },
   openGraph: {
     type: 'website',

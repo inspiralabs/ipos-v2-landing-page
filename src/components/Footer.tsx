@@ -9,7 +9,7 @@ export function Footer() {
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
         <div className="col-span-2 md:col-span-1">
           <div className="flex items-center gap-2 mb-2">
-            <Image src="/inspirapos-icon.jpeg" alt="" width={28} height={28} className="rounded-md" />
+            <Image src="/inspirapos-icon.svg" alt="" width={28} height={28} className="rounded-md" />
             <p className="font-extrabold text-cream text-lg">Inspira POS</p>
           </div>
           <p className="text-sm">Kasir untuk UMKM & restoran Indonesia — tetap jalan walau tanpa internet.</p>

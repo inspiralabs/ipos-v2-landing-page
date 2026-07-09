@@ -8,12 +8,12 @@ const EASE = [0.22, 1, 0.36, 1] as const;
 
 const fadeUp: Variants = {
   hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: EASE } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.9, ease: EASE } },
 };
 
 const itemFadeUp: Variants = {
   hidden: { opacity: 0, y: 16 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: EASE } },
 };
 
 type RevealProps = { children: ReactNode; className?: string };
@@ -35,7 +35,7 @@ export function Reveal({ children, className }: RevealProps) {
 }
 
 /** Parent grid/list — stagger tiap RevealItem anaknya saat masuk viewport. */
-export function RevealGroup({ children, className, stagger = 0.08 }: RevealProps & { stagger?: number }) {
+export function RevealGroup({ children, className, stagger = 0.12 }: RevealProps & { stagger?: number }) {
   const reduce = useReducedMotion();
   const variants: Variants = { hidden: {}, visible: { transition: { staggerChildren: stagger } } };
   return (
