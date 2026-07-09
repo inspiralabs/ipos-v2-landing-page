@@ -6,14 +6,8 @@ type Row = {
   title: string;
   desc: string;
   device: 'desktop' | 'phone';
-  image: string;
+  skeleton: 'chart' | 'stock' | 'receipt';
 };
-
-// ponytail: placeholder polos warna cream sampai screenshot asli tersedia — ganti path `image` ke
-// file di public/showcase/ (kode tidak perlu berubah, cuma path string ini).
-const PLACEHOLDER = `data:image/svg+xml,${encodeURIComponent(
-  '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300"><rect width="100%" height="100%" fill="#f5efe6"/></svg>',
-)}`;
 
 const ROWS: Row[] = [
   {
@@ -21,31 +15,97 @@ const ROWS: Row[] = [
     title: 'Laporan untung, bukan cuma omzet',
     desc: 'Lihat laba rugi, menu terlaris, dan tren penjualan harian - langsung dari layar kasir atau HP kamu.',
     device: 'desktop',
-    image: PLACEHOLDER,
+    skeleton: 'chart',
   },
   {
     icon: PackageSearch,
     title: 'Stok jalan sendiri tiap ada transaksi',
     desc: 'Nggak perlu hitung manual - stok otomatis berkurang tiap jualan, ada alert kalau mulai menipis.',
     device: 'phone',
-    image: PLACEHOLDER,
+    skeleton: 'stock',
   },
   {
     icon: Printer,
     title: 'Struk thermal, siap cetak langsung',
     desc: 'Sambungkan printer Bluetooth 58/80mm, struk keluar lengkap dengan logo toko kamu.',
     device: 'desktop',
-    image: PLACEHOLDER,
+    skeleton: 'receipt',
   },
 ];
 
-function DeviceFrame({ device, image, alt }: { device: 'desktop' | 'phone'; image: string; alt: string }) {
+const BAR_HEIGHTS = ['40%', '65%', '35%', '80%', '55%', '70%'];
+const STOCK_ITEMS = [
+  { name: 'Es Teh Manis', pct: 82 },
+  { name: 'Nasi Goreng', pct: 64 },
+  { name: 'Ayam Geprek', pct: 21 },
+  { name: 'Kerupuk', pct: 8 },
+];
+const RECEIPT_LINES = [
+  { label: 'Nasi Goreng x2', value: 'Rp 30.000' },
+  { label: 'Es Teh Manis x2', value: 'Rp 10.000' },
+  { label: 'Kerupuk x1', value: 'Rp 3.000' },
+];
+
+function ChartSkeleton() {
+  return (
+    <div className="h-full w-full flex items-end justify-around gap-2 p-6">
+      {BAR_HEIGHTS.map((h, i) => (
+        <div key={i} className="flex-1 rounded-t-md bg-maroon-deep/15" style={{ height: h }} />
+      ))}
+    </div>
+  );
+}
+
+function StockSkeleton() {
+  return (
+    <div className="h-full w-full p-4 space-y-3">
+      {STOCK_ITEMS.map((item) => (
+        <div key={item.name}>
+          <div className="flex justify-between text-[10px] text-charcoal/50 mb-1">
+            <span>{item.name}</span>
+            <span>{item.pct}%</span>
+          </div>
+          <div className="h-1.5 rounded-full bg-line overflow-hidden">
+            <div className={`h-full rounded-full ${item.pct < 15 ? 'bg-maroon-vibrant' : 'bg-gold-antique'}`} style={{ width: `${item.pct}%` }} />
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ReceiptSkeleton() {
+  return (
+    <div className="h-full w-full p-6 flex flex-col gap-2 font-mono text-[10px] text-charcoal/60">
+      <div className="text-center font-bold text-charcoal/70 mb-1">STRUK PENJUALAN</div>
+      <div className="border-t border-dashed border-line" />
+      {RECEIPT_LINES.map((l) => (
+        <div key={l.label} className="flex justify-between">
+          <span>{l.label}</span>
+          <span>{l.value}</span>
+        </div>
+      ))}
+      <div className="border-t border-dashed border-line" />
+      <div className="flex justify-between font-bold text-charcoal/80">
+        <span>TOTAL</span>
+        <span>Rp 43.000</span>
+      </div>
+    </div>
+  );
+}
+
+function Skeleton({ kind }: { kind: Row['skeleton'] }) {
+  if (kind === 'chart') return <ChartSkeleton />;
+  if (kind === 'stock') return <StockSkeleton />;
+  return <ReceiptSkeleton />;
+}
+
+function DeviceFrame({ device, skeleton }: { device: 'desktop' | 'phone'; skeleton: Row['skeleton'] }) {
   if (device === 'phone') {
     return (
       <div className="mx-auto w-[220px] rounded-[2rem] border-8 border-charcoal bg-charcoal p-1 shadow-[0_16px_40px_rgba(110,21,15,0.18)]">
         <div className="rounded-[1.5rem] overflow-hidden bg-cream aspect-[9/19]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={image} alt={alt} className="w-full h-full object-cover" />
+          <Skeleton kind={skeleton} />
         </div>
       </div>
     );
@@ -58,8 +118,7 @@ function DeviceFrame({ device, image, alt }: { device: 'desktop' | 'phone'; imag
         <span className="w-2.5 h-2.5 rounded-full bg-line" />
       </div>
       <div className="aspect-[16/10] bg-cream">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={image} alt={alt} className="w-full h-full object-cover" />
+        <Skeleton kind={skeleton} />
       </div>
     </div>
   );
@@ -68,7 +127,7 @@ function DeviceFrame({ device, image, alt }: { device: 'desktop' | 'phone'; imag
 export function AppShowcase() {
   return (
     <section className="py-12 lg:py-16 px-4">
-      <div className="max-w-5xl mx-auto space-y-14 lg:space-y-20">
+      <div className="max-w-5xl mx-auto space-y-12">
         {ROWS.map((row, i) => {
           const Icon = row.icon;
           const imageFirst = i % 2 === 1;
@@ -82,7 +141,7 @@ export function AppShowcase() {
                 <p className="text-charcoal/60">{row.desc}</p>
               </div>
               <div className={imageFirst ? 'lg:order-1' : ''}>
-                <DeviceFrame device={row.device} image={row.image} alt={row.title} />
+                <DeviceFrame device={row.device} skeleton={row.skeleton} />
               </div>
             </Reveal>
           );
