@@ -34,7 +34,7 @@ export function ProductHero({ icon, badge, title, description, image, imageAlt }
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.85]);
 
   return (
-    <div ref={containerRef} className="max-w-4xl mx-auto mb-10">
+    <div ref={containerRef} className="relative max-w-4xl mx-auto mb-10">
       <motion.div
         className="text-center"
         initial={reduce ? false : 'hidden'}

@@ -28,7 +28,7 @@ export function Hero() {
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.85]);
 
   return (
-    <section ref={containerRef} className="py-14 lg:py-20 px-4">
+    <section ref={containerRef} className="relative py-14 lg:py-20 px-4">
       <motion.div
         className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-8 lg:gap-12 items-center"
         initial={reduce ? false : 'hidden'}

@@ -21,6 +21,11 @@
   --font-sans: var(--font-dm-sans), 'DM Sans', sans-serif;
 }
 
+html {
+  /* framer-motion useScroll butuh scroll root non-static untuk kalkulasi offset yang benar */
+  position: relative;
+}
+
 body {
   background-color: var(--color-cream);
   color: var(--color-charcoal);
