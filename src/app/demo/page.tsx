@@ -3,7 +3,6 @@
 import { Suspense, useState } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal';
-import { Confetti } from '@/components/Confetti';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -128,7 +127,6 @@ Catatan: ${form.notes}`;
       appUrl.searchParams.set('phone', fullPhone);
       return (
         <main className="min-h-screen flex items-center justify-center px-4">
-          <Confetti trigger={sent} />
           <Reveal className="text-center max-w-md">
             <div className="text-5xl mb-4">🚀</div>
             <h1 className="text-2xl font-extrabold text-charcoal mb-2">Siap, tinggal setup!</h1>
@@ -143,7 +141,6 @@ Catatan: ${form.notes}`;
     }
     return (
       <main className="min-h-screen flex items-center justify-center px-4">
-        <Confetti trigger={sent} />
         <Reveal className="text-center max-w-md">
           <div className="text-5xl mb-4">🎉</div>
           <h1 className="text-2xl font-extrabold text-charcoal mb-2">Terima Kasih!</h1>

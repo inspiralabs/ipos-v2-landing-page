@@ -39,7 +39,7 @@ export function ProductHero({ badge, title, description, image, imageAlt, featur
   return (
     <div className="max-w-6xl mx-auto mb-14 grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
       <motion.div
-        className="lg:sticky lg:top-24 rounded-xl overflow-hidden border border-line shadow-[0_8px_32px_rgba(110,21,15,0.14)]"
+        className="rounded-xl overflow-hidden border border-line shadow-[0_8px_32px_rgba(110,21,15,0.14)]"
         initial={reduce ? false : { opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.75, ease: EASE }}
@@ -57,9 +57,7 @@ export function ProductHero({ badge, title, description, image, imageAlt, featur
         </motion.span>
         <motion.h1 variants={item} className="text-3xl font-extrabold text-charcoal mb-3">{title}</motion.h1>
         <motion.p variants={item} className="text-charcoal/60 mb-6">{description}</motion.p>
-        <motion.div variants={item} className="mb-8">
-          <Button asChild variant="gold"><Link href={ctaHref}>{ctaLabel}</Link></Button>
-        </motion.div>
+
 
         <motion.div variants={item} className="grid sm:grid-cols-2 gap-3">
           {features.map((f) => (
