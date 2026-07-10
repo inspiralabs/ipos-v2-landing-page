@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import {
-  Cloud, MonitorSmartphone, PackageSearch, Users,
   UserPlus, Gauge, Calculator, QrCode, ChefHat, Gift, Megaphone, Building2, Wallet, GraduationCap, ArrowLeftRight, CalendarClock,
 } from 'lucide-react';
 import { SegmentHeader, UMKM_ROWS, planFeaturesFromRows } from '@/components/Compare';
@@ -13,14 +12,15 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
-  title: 'iPOS Cloud — Kasir Cloud untuk Toko & Kafe',
+  title: 'iPOS Cloud: Aplikasi kasir online, memudahkan kelola toko & kafe',
   description: 'Kelola toko dari mana saja mulai Rp 149.000/bulan. Laporan real-time, stok otomatis, struk digital via WhatsApp.',
 };
 
 const FEATURES = [
-  { icon: <MonitorSmartphone className="w-5 h-5" aria-hidden />, title: 'Multi-Device', desc: 'Akses dari HP, tablet, atau laptop. Data tersinkron otomatis.' },
-  { icon: <PackageSearch className="w-5 h-5" aria-hidden />, title: 'Manajemen Stok', desc: 'Pantau stok bahan dan produk. Ada peringatan saat hampir habis.' },
-  { icon: <Users className="w-5 h-5" aria-hidden />, title: 'Multi-Kasir', desc: 'Buka shift kasir, pantau siapa yang melayani tiap transaksi.' },
+  { title: 'Multi-Device', desc: 'Akses dari HP, tablet, atau laptop. Data tersinkron otomatis.' },
+  { title: 'Manajemen Stok', desc: 'Pantau stok bahan dan produk. Ada peringatan saat hampir habis.' },
+  { title: 'Multi-Kasir', desc: 'Buka shift kasir, pantau siapa yang melayani tiap transaksi.' },
+  { title: 'Self-Order', desc: 'Pelanggan scan QR, pesan sendiri, order masuk kasir' }
 ];
 
 // Add-on iPOS Cloud — docs/PRICING.md §2 (PRD §5.1). Hanya untuk paket Cloud;
@@ -46,7 +46,7 @@ const PLANS: PricingPlan[] = [
     name: 'UMKM Lite',
     tagline: 'Untuk warung/kafe 1 outlet, kasir dipegang sendiri.',
     badge: 'Paling Terjangkau',
-    price: { monthly: 'Rp 149.000/bln', buyout: 'Rp 2.999.000', setup: 'Rp 199.000' },
+    price: { monthly: 'Rp 149.000/bln', yearly: 'Rp 1.499.000/thn', setup: 'Rp 199.000', setupYearly: 'Rp 99.500' },
     ctaLabel: 'Konsultasi Lite',
     ctaHref: kontakLink('Halo, saya tertarik iPOS Cloud UMKM Lite untuk usaha saya.'),
     features: planFeaturesFromRows(UMKM_ROWS, 3, 0),
@@ -57,7 +57,7 @@ const PLANS: PricingPlan[] = [
     tagline: 'Untuk kafe dengan beberapa kasir dan butuh laporan lengkap.',
     badge: 'Terlaris',
     featured: true,
-    price: { monthly: 'Rp 299.000/bln', buyout: 'Rp 4.999.000', setup: 'Rp 399.000' },
+    price: { monthly: 'Rp 299.000/bln', yearly: 'Rp 2.999.000/thn', setup: 'Rp 399.000', setupYearly: 'Rp 199.500' },
     ctaLabel: 'Konsultasi Pro',
     ctaHref: kontakLink('Halo, saya tertarik iPOS Cloud UMKM Pro untuk usaha saya.'),
     features: planFeaturesFromRows(UMKM_ROWS, 3, 1),
@@ -69,9 +69,9 @@ export default function UmkmPage() {
     <main className="py-14 px-4">
       <div className="max-w-6xl mx-auto">
         <ProductHero
-          badge="iPOS Cloud · UMKM"
-          title="Kasir Cloud untuk UMKM Kuliner"
-          description="Kelola warung, kedai, atau toko makanan kamu dari mana saja — dengan sistem kasir cloud yang mudah dipakai dan terjangkau."
+          badge="iPOS Cloud"
+          title="Kasir online untuk UMKM Kuliner"
+          description="Kelola warung, kedai, atau toko makanan kamu dari mana saja, dengan aplikasi kasir online memudahkan penjualan dan proses operasional usaha Anda."
           image="https://assets.inspirapos.biz.id/hero-images/ipos-umkm-hero.webp"
           imageAlt="Tampilan aplikasi iPOS Cloud UMKM"
           features={FEATURES}
@@ -82,9 +82,9 @@ export default function UmkmPage() {
         {/* Harga & perbandingan langsung di halaman produk */}
         <Reveal>
           <SegmentHeader
-            badge="Harga · langganan bulanan atau beli putus"
-            title="iPOS Cloud Lite vs Pro — apa bedanya?"
-            desc="Untuk warung dan kafe 1 outlet. Pro cocok kalau kasir kamu lebih dari satu orang dan butuh stok + laporan lengkap."
+            badge="Harga · langganan bulanan atau tahunan"
+            title="iPOS Cloud Lite vs Pro: apa bedanya?"
+            desc="Untuk warung dan kafe 1 outlet. Pro cocok kalau kasir kamu lebih dari satu orang dan butuh shift kasir, split bill, serta otorisasi pembatalan transaksi."
           />
         </Reveal>
         <PricingSection plans={PLANS} billing />
@@ -95,7 +95,7 @@ export default function UmkmPage() {
             <SegmentHeader
               badge="Add-On · opsional"
               title="Butuh Lebih? Pasang Add-On, Bukan Ganti Paket"
-              desc="Tambahkan fitur satu-satu sesuai kebutuhan — bisa dipasang atau dilepas kapan saja, tanpa mengubah paket utama kamu."
+              desc="Tambahkan fitur satu-satu sesuai kebutuhan. Bisa dipasang atau dilepas kapan saja, tanpa mengubah paket utama kamu."
             />
           </Reveal>
           <RevealGroup className="grid grid-cols-1 sm:grid-cols-2 gap-3" stagger={0.04}>
@@ -119,14 +119,14 @@ export default function UmkmPage() {
             Belum yakin add-on mana yang perlu?{' '}
             <a href={kontakLink('Halo, saya mau tanya add-on iPOS Cloud yang cocok untuk usaha saya.')} target="_blank" rel="noreferrer" className="text-maroon-deep font-semibold hover:underline">
               Ceritakan usahamu ke admin
-            </a> — kami sarankan yang benar-benar kepakai saja.
+            </a>, kami sarankan yang benar-benar kepakai saja.
           </p>
         </div>
 
         <Reveal className="mt-10">
           <Card className="card-gold p-6 sm:p-8 text-center">
             <h2 className="font-extrabold text-xl text-charcoal mb-2">Belum yakin? Coba dulu gratis</h2>
-            <p className="text-charcoal/60 mb-6">Trial gratis 14 hari — semua fitur terbuka, maksimal 20 menu & 50 transaksi. Tidak perlu kartu kredit.</p>
+            <p className="text-charcoal/60 mb-6">Trial gratis 14 hari, semua fitur terbuka, maksimal 20 menu & 50 transaksi. Tidak perlu kartu kredit.</p>
             <Button asChild variant="gold"><Link href="/demo?product=umkm">Coba Gratis 14 Hari</Link></Button>
           </Card>
         </Reveal>

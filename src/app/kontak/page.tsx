@@ -13,7 +13,7 @@ export default function KontakPage() {
       <div className="max-w-3xl mx-auto text-center">
         <Reveal>
           <h1 className="text-3xl font-extrabold text-charcoal mb-3">Hubungi Kami</h1>
-          <p className="text-charcoal/60 mb-10">Mau tanya paket, minta demo, atau beli lisensi? Tim kami siap bantu — bukan bot.</p>
+          <p className="text-charcoal/60 mb-10">Mau tanya paket, minta demo, atau beli lisensi? Tim kami siap bantu, bukan bot.</p>
         </Reveal>
         <RevealGroup className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6" stagger={0.06}>
           <RevealItem>

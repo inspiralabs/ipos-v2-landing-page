@@ -27,7 +27,7 @@ html {
 }
 
 body {
-  background-color: var(--color-cream);
+  background-color: var(--color-surface);
   color: var(--color-charcoal);
 }
 
@@ -41,7 +41,7 @@ p { text-wrap: pretty; }
   border-radius: 0.75rem;
   border: 1px solid var(--color-line);
   background: var(--color-surface);
-  box-shadow: 0 4px 24px rgba(110, 21, 15, 0.08);
+  box-shadow: 0 4px 24px rgba(110, 21, 15, 0.1);
   transition: box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 .card-brand:hover {

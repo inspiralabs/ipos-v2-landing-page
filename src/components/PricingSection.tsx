@@ -14,7 +14,7 @@ export type PricingPlan = {
   tagline: string;
   badge?: string;
   featured?: boolean;
-  price: { oneTime?: string; monthly?: string; buyout?: string; setup?: string };
+  price: { oneTime?: string; monthly?: string; yearly?: string; setup?: string; setupYearly?: string };
   ctaLabel: string;
   ctaHref: string;
   features: { label: string; included: boolean }[];
@@ -29,16 +29,21 @@ export function PricingSection({
   billing?: boolean;
   note?: string;
 }) {
-  const [mode, setMode] = useState<'monthly' | 'buyout'>('monthly');
-  const cols = plans.length >= 3 ? 'lg:grid-cols-3' : 'sm:grid-cols-2';
+  const [mode, setMode] = useState<'monthly' | 'yearly'>('monthly');
+  const fourUp = plans.length >= 4;
+  // 4 paket butuh lebar ekstra supaya tiap card tidak terperas - naik ke grid-cols-4
+  // baru di xl (>=1280px), bukan lg (>=1024px), supaya tetap 2 kolom yang lega di layar
+  // laptop kecil alih-alih 4 kolom sempit dengan teks fitur ter-wrap.
+  const cols = fourUp ? 'sm:grid-cols-2 xl:grid-cols-4' : plans.length >= 3 ? 'lg:grid-cols-3' : 'sm:grid-cols-2';
+  const maxWidth = fourUp ? 'max-w-7xl' : 'max-w-5xl';
 
   return (
     <div>
       {billing && (
         <div className="flex justify-center mb-8">
-          <Tabs value={mode} onValueChange={(v) => setMode(v as 'monthly' | 'buyout')}>
+          <Tabs value={mode} onValueChange={(v) => setMode(v as 'monthly' | 'yearly')}>
             <TabsList>
-              {(['monthly', 'buyout'] as const).map((m) => (
+              {(['monthly', 'yearly'] as const).map((m) => (
                 <TabsTrigger key={m} value={m} className="relative">
                   {mode === m && (
                     <motion.span
@@ -47,7 +52,7 @@ export function PricingSection({
                       transition={{ type: 'spring', stiffness: 220, damping: 26 }}
                     />
                   )}
-                  {m === 'monthly' ? 'Langganan Bulanan' : 'Beli Putus'}
+                  {m === 'monthly' ? 'Langganan Bulanan' : 'Langganan Tahunan'}
                 </TabsTrigger>
               ))}
             </TabsList>
@@ -55,12 +60,13 @@ export function PricingSection({
         </div>
       )}
 
-      <RevealGroup className={`grid grid-cols-1 ${cols} gap-6 max-w-5xl mx-auto`}>
+      <RevealGroup className={`grid grid-cols-1 ${cols} gap-5 xl:gap-4 ${maxWidth} mx-auto`}>
         {plans.map((p) => {
           const dark = p.featured;
-          const showBuyout = billing && mode === 'buyout' && p.price.buyout;
-          const displayPrice = showBuyout ? p.price.buyout : p.price.monthly ?? p.price.oneTime;
-          const suffix = showBuyout ? 'sekali bayar' : p.price.oneTime ? 'sekali bayar / perangkat' : '/bulan';
+          const showYearly = billing && mode === 'yearly' && p.price.yearly;
+          const displayPrice = showYearly ? p.price.yearly : p.price.monthly ?? p.price.oneTime;
+          const suffix = showYearly ? '/tahun' : p.price.oneTime ? 'sekali bayar / perangkat' : '/bulan';
+          const setupPrice = showYearly ? p.price.setupYearly ?? p.price.setup : p.price.setup;
 
           return (
             <RevealItem key={p.key}>
@@ -84,9 +90,9 @@ export function PricingSection({
                   <span className={`block text-xs font-medium mt-1 ${dark ? 'text-white/50' : 'text-charcoal/50'}`}>
                     {suffix}
                   </span>
-                  {showBuyout && p.price.setup && (
+                  {setupPrice && (
                     <span className={`block text-xs mt-1 ${dark ? 'text-white/50' : 'text-charcoal/50'}`}>
-                      + biaya setup {p.price.setup}
+                      + biaya setup {setupPrice}{showYearly ? ' (hemat 50%)' : ''}
                     </span>
                   )}
                 </div>

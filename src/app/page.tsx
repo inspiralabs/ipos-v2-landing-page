@@ -41,7 +41,7 @@ const PRODUCTS = [
     badge: 'F&B / Resto',
     icon: UtensilsCrossed,
     q: 'Restoran dengan dapur, meja, atau banyak cabang?',
-    title: 'Mulai Rp 999 ribu/bulan, sistem lengkap',
+    title: 'Mulai Rp 599 ribu/bulan, sistem lengkap',
     points: ['Pesanan langsung tampil di layar dapur (KDS)', 'Pelanggan pesan sendiri lewat QR di meja', 'Kelola sampai 10 cabang dari satu dashboard'],
     href: '/produk/fnb',
   },
@@ -72,7 +72,7 @@ export default function HomePage() {
       <AppShowcase />
 
       {/* Pilih jalur */}
-      <section className="py-12 lg:py-16 px-4 bg-surface border-y border-line">
+      <section className="py-12 lg:py-16 px-4 bg-cream border-y border-line">
         <div className="max-w-6xl mx-auto">
           <Reveal>
             <h2 className="text-2xl font-extrabold text-center text-charcoal mb-2">Usaha Kamu yang Mana?</h2>
@@ -138,7 +138,7 @@ export default function HomePage() {
       </section>
 
       {/* Fitur lengkap — 2 kolom di HP biar pendek */}
-      <section className="py-12 lg:py-16 px-4 bg-surface border-y border-line">
+      <section className="py-12 lg:py-16 px-4 bg-cream border-y border-line">
         <div className="max-w-6xl mx-auto">
           <Reveal>
             <h2 className="text-2xl font-extrabold text-center text-charcoal mb-2">Semua yang Warung & Resto Butuhkan</h2>
@@ -181,7 +181,7 @@ export default function HomePage() {
       </section>
 
       {/* FAQ — dipindah ke homepage */}
-      <section id="faq" className="py-12 lg:py-16 px-4 bg-surface border-y border-line scroll-mt-24">
+      <section id="faq" className="py-12 lg:py-16 px-4 bg-cream border-y border-line scroll-mt-24">
         <div className="max-w-3xl mx-auto">
           <Reveal>
             <h2 className="text-2xl font-extrabold text-charcoal text-center mb-8">Pertanyaan yang Sering Ditanyakan</h2>

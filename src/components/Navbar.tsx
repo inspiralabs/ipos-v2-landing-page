@@ -2,10 +2,11 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Menu } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetTrigger, SheetContent, SheetTitle, SheetClose } from '@/components/ui/sheet';
+import { cn } from '@/lib/utils';
 
 const LINKS = [
   { href: '/produk/offline', label: 'iPOS Offline' },
@@ -16,9 +17,23 @@ const LINKS = [
 
 export function Navbar() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
   return (
-    <nav className="sticky top-0 z-50 bg-surface/90 backdrop-blur border-b border-line">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center h-16 gap-6">
+    <nav
+      className={cn(
+        'sticky top-0 z-50 backdrop-blur border-b transition-all duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]',
+        scrolled ? 'bg-surface/95 border-line shadow-[0_8px_24px_rgba(110,21,15,0.06)]' : 'bg-surface/70 border-transparent shadow-none',
+      )}
+    >
+      <div className={cn('max-w-6xl mx-auto px-4 sm:px-6 flex items-center gap-6 transition-[height] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]', scrolled ? 'h-14' : 'h-16')}>
         <Link href="/" className="flex items-center gap-2 shrink-0">
           <Image src="/inspirapos-icon.svg" alt="" width={32} height={32} className="rounded-lg" />
           <span className="font-extrabold text-maroon-deep text-lg">Inspira POS</span>

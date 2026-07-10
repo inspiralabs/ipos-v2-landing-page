@@ -1,8 +1,6 @@
-import { BarChart3, PackageSearch, Printer } from 'lucide-react';
 import { Reveal } from '@/components/Reveal';
 
 type Row = {
-  icon: typeof BarChart3;
   title: string;
   desc: string;
   device: 'desktop' | 'phone';
@@ -11,21 +9,18 @@ type Row = {
 
 const ROWS: Row[] = [
   {
-    icon: BarChart3,
     title: 'Laporan untung, bukan cuma omzet',
     desc: 'Lihat laba rugi, menu terlaris, dan tren penjualan harian - langsung dari layar kasir atau HP kamu.',
     device: 'desktop',
     skeleton: 'chart',
   },
   {
-    icon: PackageSearch,
     title: 'Stok jalan sendiri tiap ada transaksi',
     desc: 'Nggak perlu hitung manual - stok otomatis berkurang tiap jualan, ada alert kalau mulai menipis.',
     device: 'phone',
     skeleton: 'stock',
   },
   {
-    icon: Printer,
     title: 'Struk thermal, siap cetak langsung',
     desc: 'Sambungkan printer Bluetooth 58/80mm, struk keluar lengkap dengan logo toko kamu.',
     device: 'desktop',
@@ -129,14 +124,10 @@ export function AppShowcase() {
     <section className="py-12 lg:py-16 px-4">
       <div className="max-w-5xl mx-auto space-y-12">
         {ROWS.map((row, i) => {
-          const Icon = row.icon;
           const imageFirst = i % 2 === 1;
           return (
             <Reveal key={row.title} className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div className={imageFirst ? 'lg:order-2' : ''}>
-                <div className="icon-box w-fit mb-3">
-                  <Icon className="w-6 h-6" aria-hidden />
-                </div>
                 <h3 className="text-xl sm:text-2xl font-extrabold text-charcoal mb-2">{row.title}</h3>
                 <p className="text-charcoal/60">{row.desc}</p>
               </div>

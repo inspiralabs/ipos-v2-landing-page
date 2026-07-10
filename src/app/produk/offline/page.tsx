@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { WifiOff, KeyRound, Smartphone, BarChart3 } from 'lucide-react';
 import { SegmentHeader, OFFLINE_ROWS, planFeaturesFromRows } from '@/components/Compare';
 import { kontakLink } from '@/lib/site';
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal';
@@ -10,15 +9,15 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 
 export const metadata: Metadata = {
-  title: 'iPOS Offline — Kasir Tanpa Internet, Sekali Bayar',
-  description: 'Bayar sekali, pakai selamanya. Aplikasi kasir offline untuk Android — tidak butuh internet untuk operasi harian. Lite Rp 299.000, Pro Rp 499.000.',
+  title: 'iPOS Offline: Kasir Tanpa Internet, Sekali Bayar',
+  description: 'Bayar sekali, pakai selamanya. Aplikasi kasir offline untuk Android, tidak butuh internet untuk operasi harian. Lite Rp 299.000, Pro Rp 499.000.',
 };
 
 const FEATURES = [
-  { icon: <WifiOff className="w-5 h-5" aria-hidden />, title: 'Tanpa Internet', desc: 'Semua data tersimpan di perangkat. Tidak ada koneksi = tidak ada masalah.' },
-  { icon: <KeyRound className="w-5 h-5" aria-hidden />, title: 'Sekali Bayar per Perangkat', desc: 'Beli sekali, pakai selamanya di perangkat yang sama. Tidak ada langganan bulanan.' },
-  { icon: <Smartphone className="w-5 h-5" aria-hidden />, title: 'Cepat & Ringan', desc: 'Aplikasi ringan, bisa di-install di HP/tablet Android maupun laptop.' },
-  { icon: <BarChart3 className="w-5 h-5" aria-hidden />, title: 'Laporan di Perangkat', desc: 'Omzet harian, menu terlaris, sampai laba rugi — langsung di HP kamu.' },
+  { title: 'Tanpa Internet', desc: 'Semua data tersimpan di perangkat. Tidak ada koneksi = tidak ada masalah.' },
+  { title: 'Sekali Bayar per Perangkat', desc: 'Beli sekali, pakai selamanya di perangkat yang sama. Tidak ada langganan bulanan.' },
+  { title: 'Cepat & Ringan', desc: 'Aplikasi ringan, bisa di-install di HP/tablet Android maupun laptop.' },
+  { title: 'Laporan di Perangkat', desc: 'Omzet harian, menu terlaris, sampai laba rugi, langsung di HP kamu.' },
 ];
 
 const PLANS: PricingPlan[] = [
@@ -64,13 +63,13 @@ export default function OfflinePage() {
         <Reveal>
           <SegmentHeader
             badge="Harga · sekali bayar, bukan langganan"
-            title="Offline Lite vs Offline Pro — apa bedanya?"
-            desc="Dua-duanya jalan 100% tanpa internet. Pro menambah kontrol untuk usaha yang mulai ramai: multi-kasir, hutang pelanggan, laba rugi, dan export laporan."
+            title="Offline Lite vs Offline Pro: apa bedanya?"
+            desc="Dua-duanya jalan 100% tanpa internet. Pro menambah kontrol untuk usaha yang mulai ramai: multi-kasir, hutang pelanggan, pencatatan pengeluaran toko, dan manajemen supplier."
           />
         </Reveal>
         <PricingSection
           plans={PLANS}
-          note="Sudah pakai Lite? Upgrade ke Pro cukup bayar selisih Rp 199.000 — data kamu tetap utuh."
+          note="Sudah pakai Lite? Upgrade ke Pro cukup bayar selisih Rp 199.000, data kamu tetap utuh."
         />
 
         <Reveal className="mt-10">

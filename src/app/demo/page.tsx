@@ -21,7 +21,7 @@ const BUSINESS_TYPE_LABELS: Record<string, string> = {
 };
 
 const PRODUCT_INTEREST_LABELS: Record<string, string> = {
-  unknown: 'Belum tahu — bantu pilihkan',
+  unknown: 'Belum tahu, bantu pilihkan',
   offline: 'Kasir Offline (sekali bayar)',
   umkm: 'UMKM Cloud (langganan)',
   fnb: 'F&B / Resto',
@@ -130,7 +130,7 @@ Catatan: ${form.notes}`;
           <Reveal className="text-center max-w-md">
             <div className="text-5xl mb-4">🚀</div>
             <h1 className="text-2xl font-extrabold text-charcoal mb-2">Siap, tinggal setup!</h1>
-            <p className="text-gray-500 mb-6">Klik tombol di bawah, ikuti langkah setup toko — masa coba 14 hari langsung aktif, tanpa nunggu.</p>
+            <p className="text-gray-500 mb-6">Klik tombol di bawah, ikuti langkah setup toko. Masa coba 14 hari langsung aktif, tanpa nunggu.</p>
             <Button asChild variant="gold">
               <a href={appUrl.toString()}>Buka Aplikasi &amp; Setup Toko</a>
             </Button>
@@ -220,7 +220,7 @@ Catatan: ${form.notes}`;
               <Select value={form.product_interest} onValueChange={(v) => set('product_interest', v)}>
                 <SelectTrigger id="product_interest"><SelectValue /></SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="unknown">Belum tahu — bantu pilihkan</SelectItem>
+                  <SelectItem value="unknown">Belum tahu, bantu pilihkan</SelectItem>
                   <SelectItem value="offline">Kasir Offline (sekali bayar)</SelectItem>
                   <SelectItem value="umkm">UMKM Cloud (langganan)</SelectItem>
                   <SelectItem value="fnb">F&B / Resto</SelectItem>
@@ -237,7 +237,7 @@ Catatan: ${form.notes}`;
           </RevealGroup>
           {error && <p className="text-xs text-red-500">{error}</p>}
           <Button type="submit" variant="gold" disabled={loading} className="w-full">
-            {loading ? 'Mengirim...' : form.product_interest === 'unknown' ? 'Lanjut ke WhatsApp Admin' : 'Daftar Sekarang — Gratis'}
+            {loading ? 'Mengirim...' : form.product_interest === 'unknown' ? 'Lanjut ke WhatsApp Admin' : 'Daftar Sekarang, Gratis'}
           </Button>
         </form>
       </div>

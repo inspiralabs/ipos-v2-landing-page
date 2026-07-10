@@ -5,7 +5,6 @@ import Link from 'next/link';
 import { motion, useReducedMotion, type Variants } from 'framer-motion';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import type { ReactNode } from 'react';
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
@@ -19,7 +18,7 @@ const item: Variants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: EASE } },
 };
 
-type Feature = { icon: ReactNode; title: string; desc: string };
+type Feature = { title: string; desc: string };
 
 type ProductHeroProps = {
   badge: string;
@@ -37,14 +36,14 @@ export function ProductHero({ badge, title, description, image, imageAlt, featur
   const reduce = useReducedMotion();
 
   return (
-    <div className="max-w-6xl mx-auto mb-14 grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+    <div className="max-w-6xl mx-auto mb-14 grid lg:grid-cols-2 gap-8 lg:gap-12 items-stretch">
       <motion.div
-        className="rounded-xl overflow-hidden border border-line shadow-[0_8px_32px_rgba(110,21,15,0.14)]"
+        className="relative rounded-2xl overflow-hidden border-4 border-surface shadow-[0_8px_32px_rgba(110,21,15,0.14)] ring-1 ring-line min-h-[320px] lg:min-h-full"
         initial={reduce ? false : { opacity: 0, scale: 0.97 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.75, ease: EASE }}
       >
-        <Image src={image} alt={imageAlt} width={1376} height={768} priority className="w-full h-auto" />
+        <Image src={image} alt={imageAlt} fill priority className="object-cover" />
       </motion.div>
 
       <motion.div
@@ -52,9 +51,9 @@ export function ProductHero({ badge, title, description, image, imageAlt, featur
         animate="visible"
         variants={container}
       >
-        <motion.span variants={item} className="inline-block bg-gold-bright/30 text-maroon-deep text-xs font-bold px-3 py-1 rounded-full mb-4">
+        <motion.p variants={item} className="text-lg sm:text-xl font-extrabold text-maroon-deep mb-2">
           {badge}
-        </motion.span>
+        </motion.p>
         <motion.h1 variants={item} className="text-3xl font-extrabold text-charcoal mb-3">{title}</motion.h1>
         <motion.p variants={item} className="text-charcoal/60 mb-6">{description}</motion.p>
 
@@ -62,7 +61,6 @@ export function ProductHero({ badge, title, description, image, imageAlt, featur
         <motion.div variants={item} className="grid sm:grid-cols-2 gap-3">
           {features.map((f) => (
             <Card key={f.title} className="card-brand p-4">
-              <div className="icon-box mb-2.5 !p-2">{f.icon}</div>
               <h3 className="font-bold text-charcoal mb-1 text-sm">{f.title}</h3>
               <p className="text-xs text-charcoal/60">{f.desc}</p>
             </Card>

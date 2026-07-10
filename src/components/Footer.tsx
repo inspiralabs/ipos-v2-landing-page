@@ -12,7 +12,7 @@ export function Footer() {
             <Image src="/inspirapos-icon.svg" alt="" width={28} height={28} className="rounded-md" />
             <p className="font-extrabold text-cream text-lg">Inspira POS</p>
           </div>
-          <p className="text-sm">Kasir untuk UMKM & restoran Indonesia — tetap jalan walau tanpa internet.</p>
+          <p className="text-sm">Kasir untuk UMKM & restoran Indonesia, tetap jalan walau tanpa internet.</p>
           <p className="text-xs mt-3 text-cream/40">PT Nawa Inspira Digital · InspiraLabs</p>
         </div>
         <div>
