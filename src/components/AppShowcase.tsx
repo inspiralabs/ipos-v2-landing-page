@@ -4,7 +4,7 @@ type Row = {
   title: string;
   desc: string;
   device: 'desktop' | 'phone';
-  skeleton: 'chart' | 'stock' | 'receipt';
+  skeleton: 'chart' | 'pos' | 'receipt';
 };
 
 const ROWS: Row[] = [
@@ -15,10 +15,10 @@ const ROWS: Row[] = [
     skeleton: 'chart',
   },
   {
-    title: 'Stok jalan sendiri tiap ada transaksi',
-    desc: 'Nggak perlu hitung manual - stok otomatis berkurang tiap jualan, ada alert kalau mulai menipis.',
+    title: 'Kasir tinggal tap, transaksi langsung jalan',
+    desc: 'Pilih menu dari grid, keranjang dan total kebentuk otomatis - jualan jadi cepat tanpa ribet.',
     device: 'phone',
-    skeleton: 'stock',
+    skeleton: 'pos',
   },
   {
     title: 'Struk thermal, siap cetak langsung',
@@ -29,11 +29,11 @@ const ROWS: Row[] = [
 ];
 
 const BAR_HEIGHTS = ['40%', '65%', '35%', '80%', '55%', '70%'];
-const STOCK_ITEMS = [
-  { name: 'Es Teh Manis', pct: 82 },
-  { name: 'Nasi Goreng', pct: 64 },
-  { name: 'Ayam Geprek', pct: 21 },
-  { name: 'Kerupuk', pct: 8 },
+const POS_MENU_ITEMS = [
+  { name: 'Nasi Goreng', price: 'Rp 15.000' },
+  { name: 'Es Teh Manis', price: 'Rp 5.000' },
+  { name: 'Ayam Geprek', price: 'Rp 13.000' },
+  { name: 'Kerupuk', price: 'Rp 3.000' },
 ];
 const RECEIPT_LINES = [
   { label: 'Nasi Goreng x2', value: 'Rp 30.000' },
@@ -51,18 +51,13 @@ function ChartSkeleton() {
   );
 }
 
-function StockSkeleton() {
+function PosSkeleton() {
   return (
-    <div className="h-full w-full p-4 space-y-3">
-      {STOCK_ITEMS.map((item) => (
-        <div key={item.name}>
-          <div className="flex justify-between text-[10px] text-charcoal/50 mb-1">
-            <span>{item.name}</span>
-            <span>{item.pct}%</span>
-          </div>
-          <div className="h-1.5 rounded-full bg-line overflow-hidden">
-            <div className={`h-full rounded-full ${item.pct < 15 ? 'bg-maroon-vibrant' : 'bg-gold-antique'}`} style={{ width: `${item.pct}%` }} />
-          </div>
+    <div className="h-full w-full p-4 grid grid-cols-2 gap-2 content-start">
+      {POS_MENU_ITEMS.map((item) => (
+        <div key={item.name} className="rounded-lg border border-line bg-surface px-2.5 py-2">
+          <div className="text-[10px] font-semibold text-charcoal/70">{item.name}</div>
+          <div className="text-[10px] text-charcoal/50 mt-0.5">{item.price}</div>
         </div>
       ))}
     </div>
@@ -91,7 +86,7 @@ function ReceiptSkeleton() {
 
 function Skeleton({ kind }: { kind: Row['skeleton'] }) {
   if (kind === 'chart') return <ChartSkeleton />;
-  if (kind === 'stock') return <StockSkeleton />;
+  if (kind === 'pos') return <PosSkeleton />;
   return <ReceiptSkeleton />;
 }
 
