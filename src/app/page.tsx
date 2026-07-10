@@ -61,7 +61,7 @@ const FEATURES = [
   { icon: Users, t: 'Multi-kasir', d: 'Tiap kasir punya PIN sendiri' },
   { icon: HandCoins, t: 'Catatan hutang', d: 'Piutang pelanggan + cicilan tercatat' },
   { icon: QrCode, t: 'QRIS & QR order', d: 'Terima QRIS, pelanggan pesan dari meja' },
-  { icon: DatabaseBackup, t: 'Data aman', d: 'Backup satu ketuk, pulihkan kapan saja' },
+  { icon: DatabaseBackup, t: 'Data aman', d: 'Backup satu tap, pulihkan kapan saja' },
 ];
 
 export default function HomePage() {
