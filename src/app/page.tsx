@@ -25,7 +25,7 @@ const PRODUCTS = [
     icon: WifiOff,
     featured: true,
     q: 'Pengen punya sistem kasir offline? Nggak mau bayar bulanan?',
-    title: 'Sekali bayar Rp 299 ribu, jalan selamanya',
+    title: 'Cukup Rp 299 ribu, jalan selamanya',
     points: ['100% tanpa internet - data aman di HP kamu', 'Tanpa langganan, tanpa biaya tersembunyi', 'Stok, struk thermal, laporan harian - lengkap'],
     href: '/produk/offline',
   },
