@@ -8,13 +8,15 @@ export type Slide = {
   overlay: string;
 };
 
+const CDN = 'https://assets.inspirapos.biz.id/hero-images';
+
 export const SLIDES: Slide[] = [
   {
     headline1: 'Kasir yang Tetap Jalan',
     headline2: 'Walau Internet Mati',
     sub: 'Inspira POS - kasir pintar untuk UMKM kuliner dan restoran Indonesia. Catat jualan, kelola stok, lihat untung. Mulai Rp 149 ribu/bulan atau sekali bayar Rp 299 ribu.',
     ctaHref: '/demo',
-    image: '/hero-images/ipos-offline-hero.webp',
+    image: `${CDN}/ipos-offline-hero.webp`,
     imageAlt: 'Pemilik warung memakai iPOS Offline di tablet',
     overlay: 'from-charcoal/85 via-charcoal/45',
   },
@@ -23,7 +25,7 @@ export const SLIDES: Slide[] = [
     headline2: 'Laporan Real-Time di HP',
     sub: 'Kelola satu warung atau kafe tanpa harus di tempat. Cek omzet, stok, dan laba kapan saja - mulai Rp 149 ribu/bulan.',
     ctaHref: '/demo?product=umkm',
-    image: '/hero-images/ipos-umkm-hero.webp',
+    image: `${CDN}/ipos-umkm-hero.webp`,
     imageAlt: 'Pemilik kafe memantau laporan iPOS Cloud dari HP',
     overlay: 'from-charcoal/85 via-charcoal/45',
   },
@@ -32,8 +34,17 @@ export const SLIDES: Slide[] = [
     headline2: 'Semua Cabang Resto',
     sub: 'Dapur, meja, dan laporan tiap outlet terhubung dalam satu dashboard. Cocok untuk resto dan kafe yang mulai berkembang.',
     ctaHref: '/demo?product=fnb',
-    image: '/hero-images/ipos-fnb-hero.webp',
+    image: `${CDN}/ipos-fnb-hero.webp`,
     imageAlt: 'Dapur restoran memakai kitchen display system iPOS FnB',
     overlay: 'from-charcoal/90 via-charcoal/55',
+  },
+  {
+    headline1: 'Bayar Sekali.',
+    headline2: 'Pakai Selamanya.',
+    sub: 'Kasir offline Inspira POS: stok, struk thermal, laporan harian — tanpa tagihan bulanan. Cukup Rp 299 ribu, data aman di perangkat kamu.',
+    ctaHref: '/produk/offline',
+    image: `${CDN}/ipos-offline.webp`,
+    imageAlt: 'Tampilan aplikasi iPos Offline di perangkat',
+    overlay: 'from-charcoal/85 via-charcoal/45',
   },
 ];
