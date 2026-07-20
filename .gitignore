@@ -20,3 +20,7 @@ coverage/
 .impeccable/
 
 supabase-leads.sql
+
+.superpowers/
+
+tsconfig.buildInfo
