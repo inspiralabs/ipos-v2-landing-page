@@ -12,7 +12,7 @@ export function SelectTrigger({ className, children, ...props }: React.Component
   return (
     <SelectPrimitive.Trigger
       className={cn(
-        'flex w-full min-h-11 items-center justify-between rounded-lg border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary data-[placeholder]:text-gray-400',
+        'flex w-full min-h-11 items-center justify-between rounded-lg border border-line px-3 py-2 text-sm text-charcoal data-[placeholder]:text-charcoal/40',
         className
       )}
       {...props}
@@ -30,7 +30,7 @@ export function SelectContent({ className, children, ...props }: React.Component
     <SelectPrimitive.Portal>
       <SelectPrimitive.Content
         className={cn(
-          'z-50 max-h-72 min-w-[var(--radix-select-trigger-width)] overflow-hidden rounded-lg border border-gray-200 bg-white shadow-lg',
+          'z-50 max-h-72 min-w-[var(--radix-select-trigger-width)] overflow-hidden rounded-lg border border-line bg-surface shadow-lg',
           className
         )}
         position="popper"
