@@ -6,26 +6,26 @@ import { UMKM_ROWS, planFeaturesFromRows } from '@/components/Compare';
 import type { PricingPlan } from '@/components/PricingSection';
 
 export const FEATURES = [
-  { title: 'Multi-Device', desc: 'Akses dari HP, tablet, atau laptop. Data tersinkron otomatis.' },
+  { title: 'Bisa dari HP, Tablet, atau Laptop', desc: 'Akses dari mana saja. Data tersinkron otomatis.' },
   { title: 'Manajemen Stok', desc: 'Pantau stok bahan dan produk. Ada peringatan saat hampir habis.' },
-  { title: 'Multi-Kasir', desc: 'Buka shift kasir, pantau siapa yang melayani tiap transaksi.' },
-  { title: 'Self-Order', desc: 'Pelanggan scan QR, pesan sendiri, order masuk kasir' }
+  { title: 'Kasir Lebih dari Satu', desc: 'Buka shift kasir, pantau siapa yang melayani tiap transaksi.' },
+  { title: 'Pelanggan Pesan Sendiri', desc: 'Scan QR di meja, pesan sendiri, order langsung masuk kasir.' }
 ];
 
 // Add-on iPOS Cloud — docs/PRICING.md §2 (PRD §5.1). Hanya untuk paket Cloud;
 // iPOS FnB sudah termasuk sebagian besar fitur ini di paketnya.
 export const ADDONS = [
-  { icon: UserPlus, name: 'Role tambahan', desc: 'Tambah jenis akses di luar owner & kasir', price: 'Rp 49.000/bln' },
-  { icon: Gauge, name: 'Dashboard stok real-time', desc: 'Pantau pergerakan stok detik itu juga', price: 'Rp 99.000/bln' },
-  { icon: Calculator, name: 'Food cost / HPP otomatis', desc: 'Modal per menu dihitung otomatis', price: 'Rp 99.000/bln' },
-  { icon: QrCode, name: 'QR Self-Order', desc: 'Pelanggan scan QR, pesan sendiri, order masuk kasir', price: 'Rp 109.000/bln' },
-  { icon: ChefHat, name: 'KDS Dapur', desc: 'Pesanan tampil di layar dapur', price: 'Rp 149.000/bln' },
+  { icon: UserPlus, name: 'Akses Tambahan untuk Staf', desc: 'Tambah jenis akses di luar owner & kasir', price: 'Rp 49.000/bln' },
+  { icon: Gauge, name: 'Pantau Stok Detik Itu Juga', desc: 'Tahu stok berkurang begitu ada yang laku, tanpa nunggu laporan harian', price: 'Rp 99.000/bln' },
+  { icon: Calculator, name: 'Untung-Rugi Tiap Menu, Otomatis', desc: 'Modal per menu (HPP) dihitung otomatis', price: 'Rp 99.000/bln' },
+  { icon: QrCode, name: 'Pelanggan Pesan Sendiri (QR)', desc: 'Pelanggan scan QR, pesan sendiri, order masuk kasir', price: 'Rp 109.000/bln' },
+  { icon: ChefHat, name: 'Layar Dapur (KDS)', desc: 'Pesanan langsung tampil di layar dapur', price: 'Rp 149.000/bln' },
   { icon: Gift, name: 'Loyalty program', desc: 'Poin & redeem untuk pelanggan setia', price: 'Rp 149.000/bln' },
   { icon: Megaphone, name: 'WA Broadcast promo', desc: 'Kirim promo ke pelanggan via WhatsApp', price: 'Rp 199.000/bln' },
   { icon: Building2, name: 'Outlet tambahan', desc: 'Buka cabang tanpa ganti paket', price: 'Rp 299.000/outlet/bln' },
   { icon: Wallet, name: 'Dashboard keuangan', desc: 'Laba rugi & arus kas lengkap', price: 'Rp 299.000/bln' },
   { icon: GraduationCap, name: 'Training kasir on-site', desc: 'Pelatihan 2 jam di lokasi kamu', price: 'Rp 399.000/sesi' },
-  { icon: ArrowLeftRight, name: 'Inter-branch transfer', desc: 'Pindah stok antar cabang tercatat', price: 'Rp 499.000/bln' },
+  { icon: ArrowLeftRight, name: 'Pindah Stok Antar Cabang', desc: 'Transfer stok antar cabang, tercatat otomatis', price: 'Rp 499.000/bln' },
   { icon: CalendarClock, name: 'Absensi karyawan', desc: 'Jam masuk-pulang karyawan tercatat', price: 'Rp 499.000/bln' },
 ];
 

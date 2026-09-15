@@ -21,7 +21,7 @@ export default function UmkmPage() {
         <ProductHero
           badge="iPOS Cloud"
           title="Kasir online untuk UMKM Kuliner"
-          description="Kelola warung, kedai, atau toko makanan kamu dari mana saja, dengan aplikasi kasir online memudahkan penjualan dan proses operasional usaha Anda."
+          description="Kelola warung, kedai, atau toko makanan kamu dari mana saja - aplikasi kasir online yang memudahkan penjualan dan operasional usahamu."
           image="https://assets.inspirapos.biz.id/hero-images/ipos-umkm-hero.webp"
           imageAlt="Tampilan aplikasi iPOS Cloud UMKM"
           features={FEATURES}
