@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Check, X, MessageCircle } from 'lucide-react';
+import { Check, X, ArrowRight } from 'lucide-react';
 import { RevealGroup, RevealItem } from './Reveal';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -52,7 +52,7 @@ export function PricingSection({
                       transition={{ type: 'spring', stiffness: 220, damping: 26 }}
                     />
                   )}
-                  {m === 'monthly' ? 'Langganan Bulanan' : 'Langganan Tahunan'}
+                  {m === 'monthly' ? 'Langganan Bulanan' : 'Langganan Tahunan (hemat ±2 bulan)'}
                 </TabsTrigger>
               ))}
             </TabsList>
@@ -87,12 +87,12 @@ export function PricingSection({
                   <span className={`text-3xl font-black tracking-tight ${dark ? 'text-white' : 'text-charcoal'}`}>
                     {displayPrice}
                   </span>
-                  <span className={`block text-xs font-medium mt-1 ${dark ? 'text-white/50' : 'text-charcoal/50'}`}>
+                  <span className={`block text-xs font-medium mt-1 ${dark ? 'text-white/70' : 'text-charcoal/70'}`}>
                     {suffix}
                   </span>
                   {setupPrice && (
-                    <span className={`block text-xs mt-1 ${dark ? 'text-white/50' : 'text-charcoal/50'}`}>
-                      + biaya setup {setupPrice}{showYearly ? ' (hemat 50%)' : ''}
+                    <span className={`block text-sm font-semibold mt-1.5 ${dark ? 'text-white' : 'text-charcoal'}`}>
+                      + setup {setupPrice} (sekali bayar){showYearly ? ' · hemat 50%' : ''}
                     </span>
                   )}
                 </div>
@@ -103,9 +103,9 @@ export function PricingSection({
                       {f.included ? (
                         <Check className={`w-4 h-4 shrink-0 mt-0.5 ${dark ? 'text-gold-bright' : 'text-maroon-deep'}`} aria-hidden />
                       ) : (
-                        <X className={`w-4 h-4 shrink-0 mt-0.5 ${dark ? 'text-white/30' : 'text-charcoal/30'}`} aria-hidden />
+                        <X className={`w-4 h-4 shrink-0 mt-0.5 ${dark ? 'text-white/45' : 'text-charcoal/45'}`} aria-hidden />
                       )}
-                      <span className={f.included ? (dark ? 'text-white/85' : 'text-charcoal/70') : dark ? 'text-white/40' : 'text-charcoal/40'}>
+                      <span className={f.included ? (dark ? 'text-white/85' : 'text-charcoal/70') : dark ? 'text-white/60' : 'text-charcoal/60'}>
                         {f.label}
                       </span>
                     </li>
@@ -114,7 +114,7 @@ export function PricingSection({
 
                 <Button asChild variant={dark ? 'gold' : 'outline'} className="w-full">
                   <a href={p.ctaHref} target="_blank" rel="noreferrer">
-                    <MessageCircle className="w-4 h-4" aria-hidden /> {p.ctaLabel}
+                    {p.ctaLabel} <ArrowRight className="w-4 h-4" aria-hidden />
                   </a>
                 </Button>
               </Card>
