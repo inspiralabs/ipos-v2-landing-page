@@ -4,8 +4,8 @@ import { useCallback, useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { AnimatePresence, motion, useReducedMotion, type Variants } from 'framer-motion';
-import { MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
-import { kontakLink } from '@/lib/site';
+import { MessageCircle, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
+import { waLink } from '@/lib/site';
 import { Button } from '@/components/ui/button';
 import { SLIDES } from './Hero.content';
 
@@ -21,6 +21,7 @@ const item: Variants = {
 export function Hero() {
   const reduce = useReducedMotion();
   const [index, setIndex] = useState(0);
+  const [playing, setPlaying] = useState(true);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const goTo = useCallback((next: number) => {
@@ -28,19 +29,25 @@ export function Hero() {
   }, []);
 
   useEffect(() => {
-    if (reduce) return;
+    if (reduce || !playing) return;
     timerRef.current = setInterval(() => {
       setIndex((i) => (i + 1) % SLIDES.length);
     }, AUTOPLAY_MS);
     return () => {
       if (timerRef.current) clearInterval(timerRef.current);
     };
-  }, [reduce, index]);
+  }, [reduce, playing, index]);
 
   const slide = SLIDES[index];
 
   return (
-    <section className="relative h-[560px] sm:h-[600px] lg:h-[680px] overflow-hidden">
+    <section
+      className="relative h-[560px] sm:h-[600px] lg:h-[680px] overflow-hidden bg-charcoal"
+      onMouseEnter={() => setPlaying(false)}
+      onMouseLeave={() => setPlaying(true)}
+      onFocus={() => setPlaying(false)}
+      onBlur={() => setPlaying(true)}
+    >
       <AnimatePresence mode="wait">
         <motion.div
           key={index}
@@ -57,11 +64,12 @@ export function Hero() {
             priority={index === 0}
             className="object-cover"
           />
-          <div className={`absolute inset-0 bg-gradient-to-r ${slide.overlay} to-transparent`} />
+          <div className={`absolute inset-0 bg-gradient-to-t ${slide.overlay} to-charcoal/10 md:bg-gradient-to-r md:to-transparent`} />
         </motion.div>
       </AnimatePresence>
 
       <div className="relative h-full max-w-6xl mx-auto px-4 flex items-center">
+        <h1 className="sr-only">Inspira POS — Kasir untuk UMKM dan Restoran Indonesia</h1>
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
@@ -70,16 +78,16 @@ export function Hero() {
             animate="visible"
             exit={reduce ? undefined : 'exit'}
           >
-            <motion.h1 variants={item} className="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight [text-shadow:0_2px_16px_rgba(0,0,0,0.35)]">
+            <motion.p variants={item} className="text-4xl md:text-5xl font-extrabold text-white mb-4 leading-tight [text-shadow:0_2px_16px_rgba(0,0,0,0.35)]">
               {slide.headline1} <span className="text-gold-bright">{slide.headline2}</span>
-            </motion.h1>
+            </motion.p>
             <motion.p variants={item} className="text-lg text-white/85 mb-8">
               {slide.sub}
             </motion.p>
             <motion.div variants={item} className="flex flex-col sm:flex-row gap-3">
               <Button asChild variant="gold"><Link href={slide.ctaHref}>Coba Gratis 14 Hari</Link></Button>
               <Button asChild variant="outline" className="!border-white !text-white hover:!bg-white/10">
-                <a href={kontakLink('Halo, saya mau tanya tentang Inspira POS.')} target="_blank" rel="noreferrer">
+                <a href={waLink('Halo, saya mau tanya tentang Inspira POS.')} target="_blank" rel="noreferrer">
                   <MessageCircle className="w-4 h-4" aria-hidden /> Tanya Dulu via WA
                 </a>
               </Button>
@@ -106,7 +114,7 @@ export function Hero() {
         <ChevronRight className="w-5 h-5" aria-hidden />
       </button>
 
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-8 flex gap-2">
+      <div className="absolute left-1/2 -translate-x-1/2 bottom-8 flex items-center gap-1">
         {SLIDES.map((s, i) => (
           <button
             key={s.headline1}
@@ -114,9 +122,19 @@ export function Hero() {
             onClick={() => goTo(i)}
             aria-label={`Ke slide ${i + 1}`}
             aria-current={i === index}
-            className={`h-2 rounded-full transition-all ${i === index ? 'w-6 bg-white' : 'w-2 bg-white/40'}`}
-          />
+            className="min-h-11 min-w-11 grid place-items-center"
+          >
+            <span className={`h-2 rounded-full transition-all ${i === index ? 'w-6 bg-white' : 'w-2 bg-white/40'}`} />
+          </button>
         ))}
+        <button
+          type="button"
+          onClick={() => setPlaying((p) => !p)}
+          aria-label={playing ? 'Jeda slide otomatis' : 'Lanjutkan slide otomatis'}
+          className="min-h-11 min-w-11 grid place-items-center text-white/70 hover:text-white"
+        >
+          {playing ? <Pause className="w-4 h-4" aria-hidden /> : <Play className="w-4 h-4" aria-hidden />}
+        </button>
       </div>
     </section>
   );

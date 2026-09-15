@@ -21,7 +21,7 @@ export const SLIDES: Slide[] = [
     overlay: 'from-charcoal/85 via-charcoal/45',
   },
   {
-    headline1: 'Pantau Warung Dari Mana Saja',
+    headline1: 'Pantau Warung Dari Mana Saja,',
     headline2: 'Laporan Real-Time di HP',
     sub: 'Kelola satu warung atau kafe tanpa harus di tempat. Cek omzet, stok, dan laba kapan saja - mulai Rp 149 ribu/bulan.',
     ctaHref: '/demo?product=umkm',
