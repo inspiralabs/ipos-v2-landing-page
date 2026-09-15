@@ -21,7 +21,9 @@ const item: Variants = {
 export function Hero() {
   const reduce = useReducedMotion();
   const [index, setIndex] = useState(0);
-  const [playing, setPlaying] = useState(true);
+  const [userPaused, setUserPaused] = useState(false);
+  const [hoverPaused, setHoverPaused] = useState(false);
+  const playing = !userPaused && !hoverPaused;
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   const goTo = useCallback((next: number) => {
@@ -43,10 +45,10 @@ export function Hero() {
   return (
     <section
       className="relative h-[560px] sm:h-[600px] lg:h-[680px] overflow-hidden bg-charcoal"
-      onMouseEnter={() => setPlaying(false)}
-      onMouseLeave={() => setPlaying(true)}
-      onFocus={() => setPlaying(false)}
-      onBlur={() => setPlaying(true)}
+      onMouseEnter={() => setHoverPaused(true)}
+      onMouseLeave={() => setHoverPaused(false)}
+      onFocus={() => setHoverPaused(true)}
+      onBlur={() => setHoverPaused(false)}
     >
       <AnimatePresence mode="wait">
         <motion.div
@@ -129,7 +131,7 @@ export function Hero() {
         ))}
         <button
           type="button"
-          onClick={() => setPlaying((p) => !p)}
+          onClick={() => setUserPaused((p) => !p)}
           aria-label={playing ? 'Jeda slide otomatis' : 'Lanjutkan slide otomatis'}
           className="min-h-11 min-w-11 grid place-items-center text-white/70 hover:text-white"
         >
