@@ -42,8 +42,8 @@ function validate(form: FormState) {
   const errors: Partial<Record<keyof FormState, string>> = {};
   if (form.name.trim().length < 3) errors.name = 'Nama lengkap minimal 3 karakter.';
   if (form.business_name.trim().length < 3) errors.business_name = 'Nama usaha minimal 3 karakter.';
-  // 12 digit format domestik (contoh 081234567899) = 11 digit setelah 0 dibuang otomatis di field +62.
-  if (!/^\d{11}$/.test(form.phone)) errors.phone = 'Nomor WhatsApp harus 12 digit, contoh 081234567899 (ketik 81234567899 di sini).';
+  // Nomor HP Indonesia setelah 0 dibuang: diawali 8, total 9-12 digit (mis. 81234567899).
+  if (!/^8\d{8,11}$/.test(form.phone)) errors.phone = 'Nomor WhatsApp tidak valid. Contoh: 81234567899 (tanpa angka 0 di depan).';
   if (form.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) errors.email = 'Format email tidak valid.';
   if (form.business_type === 'lainnya' && form.business_type_other.trim().length === 0) {
     errors.business_type_other = 'Isi jenis usaha kamu.';
@@ -128,13 +128,12 @@ Catatan: ${form.notes}`;
       return (
         <main className="min-h-screen flex items-center justify-center px-4">
           <Reveal className="text-center max-w-md">
-            <div className="text-5xl mb-4">🚀</div>
             <h1 className="text-2xl font-extrabold text-charcoal mb-2">Siap, tinggal setup!</h1>
-            <p className="text-gray-500 mb-6">Klik tombol di bawah, ikuti langkah setup toko. Masa coba 14 hari langsung aktif, tanpa nunggu.</p>
+            <p className="text-charcoal/60 mb-6">Klik tombol di bawah, ikuti langkah setup toko. Masa coba 14 hari langsung aktif, tanpa nunggu.</p>
             <Button asChild variant="gold">
               <a href={appUrl.toString()}>Buka Aplikasi &amp; Setup Toko</a>
             </Button>
-            <p className="text-xs text-gray-400 mt-4">Butuh bantuan? Tim kami tetap standby via WhatsApp.</p>
+            <p className="text-xs text-charcoal/50 mt-4">Butuh bantuan? Tim kami tetap standby via WhatsApp.</p>
           </Reveal>
         </main>
       );
@@ -142,9 +141,8 @@ Catatan: ${form.notes}`;
     return (
       <main className="min-h-screen flex items-center justify-center px-4">
         <Reveal className="text-center max-w-md">
-          <div className="text-5xl mb-4">🎉</div>
           <h1 className="text-2xl font-extrabold text-charcoal mb-2">Terima Kasih!</h1>
-          <p className="text-gray-500">Tim kami akan menghubungi kamu via WhatsApp dalam 1×24 jam untuk proses onboarding gratis.</p>
+          <p className="text-charcoal/60">Tim kami akan menghubungi kamu via WhatsApp dalam 1×24 jam untuk proses onboarding gratis.</p>
         </Reveal>
       </main>
     );
@@ -155,7 +153,7 @@ Catatan: ${form.notes}`;
       <div className="max-w-lg mx-auto">
         <Reveal className="text-center mb-8">
           <h1 className="text-3xl font-extrabold text-charcoal mb-2">Coba Gratis 14 Hari</h1>
-          <p className="text-gray-500">Tidak perlu kartu kredit. Tim kami siap bantu setup.</p>
+          <p className="text-charcoal/60">Tidak perlu kartu kredit. Tim kami siap bantu setup.</p>
         </Reveal>
         <form onSubmit={handleSubmit} noValidate className="bg-surface rounded-2xl border border-gold-antique/20 shadow p-8 space-y-4">
           <input type="text" name="website" value={website} onChange={(e) => setWebsite(e.target.value)}
@@ -164,36 +162,36 @@ Catatan: ${form.notes}`;
             <RevealItem>
               <Label htmlFor="name">Nama Lengkap</Label>
               <Input id="name" type="text" value={form.name} onChange={(e) => set('name', e.target.value)} />
-              {errors.name && <p className="mt-1 text-xs text-red-500">{errors.name}</p>}
+              {errors.name && <p className="mt-1 text-xs text-maroon-vibrant">{errors.name}</p>}
             </RevealItem>
             <RevealItem>
               <Label htmlFor="business_name">Nama Usaha</Label>
               <Input id="business_name" type="text" value={form.business_name} onChange={(e) => set('business_name', e.target.value)} />
-              {errors.business_name && <p className="mt-1 text-xs text-red-500">{errors.business_name}</p>}
+              {errors.business_name && <p className="mt-1 text-xs text-maroon-vibrant">{errors.business_name}</p>}
             </RevealItem>
             <RevealItem>
               <Label htmlFor="phone">Nomor WhatsApp</Label>
               <div className="flex">
-                <span className="inline-flex items-center rounded-l-lg border border-r-0 border-gray-300 bg-gray-50 px-3 text-sm text-gray-500">
+                <span className="inline-flex items-center rounded-l-lg border border-r-0 border-gray-300 bg-cream px-3 text-sm text-charcoal/60">
                   +62
                 </span>
                 <Input
                   id="phone"
                   type="tel"
                   inputMode="numeric"
-                  maxLength={11}
+                  maxLength={12}
                   placeholder="81234567899"
                   className="rounded-l-none"
                   value={form.phone}
-                  onChange={(e) => set('phone', e.target.value.replace(/\D/g, '').replace(/^0+/, '').slice(0, 11))}
+                  onChange={(e) => set('phone', e.target.value.replace(/\D/g, '').replace(/^0+/, '').slice(0, 12))}
                 />
               </div>
-              {errors.phone && <p className="mt-1 text-xs text-red-500">{errors.phone}</p>}
+              {errors.phone && <p className="mt-1 text-xs text-maroon-vibrant">{errors.phone}</p>}
             </RevealItem>
             <RevealItem>
               <Label htmlFor="email">Email (opsional)</Label>
               <Input id="email" type="email" value={form.email} onChange={(e) => set('email', e.target.value)} />
-              {errors.email && <p className="mt-1 text-xs text-red-500">{errors.email}</p>}
+              {errors.email && <p className="mt-1 text-xs text-maroon-vibrant">{errors.email}</p>}
             </RevealItem>
             <RevealItem>
               <Label htmlFor="business_type">Jenis Usaha</Label>
@@ -212,7 +210,7 @@ Catatan: ${form.notes}`;
               <RevealItem>
                 <Label htmlFor="business_type_other">Jenis Usaha Lainnya</Label>
                 <Input id="business_type_other" type="text" value={form.business_type_other} onChange={(e) => set('business_type_other', e.target.value)} />
-                {errors.business_type_other && <p className="mt-1 text-xs text-red-500">{errors.business_type_other}</p>}
+                {errors.business_type_other && <p className="mt-1 text-xs text-maroon-vibrant">{errors.business_type_other}</p>}
               </RevealItem>
             )}
             <RevealItem>
@@ -231,14 +229,17 @@ Catatan: ${form.notes}`;
               <RevealItem>
                 <Label htmlFor="notes">Catatan</Label>
                 <Textarea id="notes" rows={3} placeholder="Ceritakan usahamu, biar admin bisa bantu pilihkan produk yang cocok." value={form.notes} onChange={(e) => set('notes', e.target.value)} />
-                {errors.notes && <p className="mt-1 text-xs text-red-500">{errors.notes}</p>}
+                {errors.notes && <p className="mt-1 text-xs text-maroon-vibrant">{errors.notes}</p>}
               </RevealItem>
             )}
           </RevealGroup>
-          {error && <p className="text-xs text-red-500">{error}</p>}
+          {error && <p className="text-xs text-maroon-vibrant">{error}</p>}
           <Button type="submit" variant="gold" disabled={loading} className="w-full">
             {loading ? 'Mengirim...' : form.product_interest === 'unknown' ? 'Lanjut ke WhatsApp Admin' : 'Daftar Sekarang, Gratis'}
           </Button>
+          <p className="text-xs text-charcoal/60 text-center">
+            Setelah kirim, tim kami hubungi kamu via WhatsApp dalam 1×24 jam. Nggak ada kartu kredit, nggak ada komitmen.
+          </p>
         </form>
       </div>
     </main>
