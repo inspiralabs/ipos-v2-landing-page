@@ -32,8 +32,7 @@ export default function UmkmPage() {
         {/* Harga & perbandingan langsung di halaman produk */}
         <Reveal>
           <SegmentHeader
-            badge="Harga · langganan bulanan atau tahunan"
-            title="iPOS Cloud Lite vs Pro: apa bedanya?"
+            title="iPOS Cloud Lite vs Pro: Apa Bedanya?"
             desc="Untuk warung dan kafe 1 outlet. Pro cocok kalau kasir kamu lebih dari satu orang dan butuh shift kasir, split bill, serta otorisasi pembatalan transaksi."
           />
         </Reveal>
@@ -43,8 +42,7 @@ export default function UmkmPage() {
         <div className="mt-14">
           <Reveal>
             <SegmentHeader
-              badge="Add-On · opsional"
-              title="Butuh Lebih? Pasang Add-On, Bukan Ganti Paket"
+              title="Butuh Lebih? Pasang Add-On (Opsional), Bukan Ganti Paket"
               desc="Tambahkan fitur satu-satu sesuai kebutuhan. Bisa dipasang atau dilepas kapan saja, tanpa mengubah paket utama kamu."
             />
           </Reveal>

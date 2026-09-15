@@ -32,9 +32,8 @@ export default function FnbPage() {
         {/* Harga & perbandingan langsung di halaman produk */}
         <Reveal>
           <SegmentHeader
-            badge="Harga · langganan bulanan atau tahunan"
-            title="Basic vs Starter vs Pro vs Business: apa bedanya?"
-            desc="Semua paket sudah termasuk dapur (KDS), denah meja, dan QR order per meja. Basic cocok untuk 1 outlet yang baru mulai; Starter ke atas menambah stok bahan & BOM otomatis; naik paket lagi kalau cabang bertambah atau butuh laporan keuangan konsolidasi."
+            title="Basic vs Starter vs Pro vs Business: Apa Bedanya?"
+            desc="Semua paket sudah termasuk layar dapur, denah meja, dan QR order per meja. Basic cocok untuk 1 outlet yang baru mulai; Starter ke atas menambah stok bahan & resep otomatis; naik paket lagi kalau cabang bertambah atau butuh laporan keuangan konsolidasi."
           />
         </Reveal>
         <PricingSection plans={PLANS} billing />
@@ -52,8 +51,7 @@ export default function FnbPage() {
         <div className="mt-14">
           <Reveal>
             <SegmentHeader
-              badge="Add-On · opsional"
-              title="Butuh Lebih? Pasang Add-On, Bukan Naik Tier"
+              title="Butuh Lebih? Pasang Add-On (Opsional), Bukan Naik Tier"
               desc="Buat Resto Basic: pasang satu-satu fitur yang benar-benar kepakai. Buat semua tier: tambah outlet, promo, atau training kapan saja."
             />
           </Reveal>

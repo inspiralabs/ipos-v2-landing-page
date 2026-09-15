@@ -31,8 +31,7 @@ export default function OfflinePage() {
         {/* Harga & perbandingan langsung di halaman produk */}
         <Reveal>
           <SegmentHeader
-            badge="Harga · sekali bayar, bukan langganan"
-            title="Offline Lite vs Offline Pro: apa bedanya?"
+            title="Offline Lite vs Offline Pro: Sekali Bayar, Bukan Langganan"
             desc="Dua-duanya jalan 100% tanpa internet. Pro menambah kontrol untuk usaha yang mulai ramai: multi-kasir, hutang pelanggan, pencatatan pengeluaran toko, dan manajemen supplier."
           />
         </Reveal>

@@ -117,7 +117,7 @@ export function CompareTable({ headers, rows }: { headers: string[]; rows: strin
                       {v === '✓' ? (
                         <Check className="w-4 h-4 text-maroon-deep mx-auto" aria-label="Termasuk" />
                       ) : v === '—' ? (
-                        <X className="w-4 h-4 text-charcoal/25 mx-auto" aria-label="Tidak termasuk" />
+                        <X className="w-4 h-4 text-charcoal/45 mx-auto" aria-label="Tidak termasuk" />
                       ) : (
                         <span className="text-charcoal/80">{v}</span>
                       )}
@@ -133,14 +133,13 @@ export function CompareTable({ headers, rows }: { headers: string[]; rows: strin
   );
 }
 
-export function SegmentHeader({ id, badge, title, desc }: {
-  id?: string; badge: string; title: string; desc: string;
+export function SegmentHeader({ id, title, desc }: {
+  id?: string; title: string; desc: string;
 }) {
   return (
     <Reveal>
       <div id={id} className="text-center mb-8 scroll-mt-24">
-        <span className="inline-block bg-gold-bright/30 text-maroon-deep text-xs font-bold px-3 py-1 rounded-full mb-3">{badge}</span>
-        <h2 className="text-2xl font-extrabold text-charcoal mb-2">{title}</h2>
+        <h2 className="text-2xl sm:text-3xl font-extrabold text-charcoal mb-2">{title}</h2>
         <p className="text-charcoal/60 max-w-2xl mx-auto text-sm leading-relaxed">{desc}</p>
       </div>
     </Reveal>
