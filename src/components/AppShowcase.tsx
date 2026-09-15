@@ -35,6 +35,7 @@ export function AppShowcase() {
   return (
     <section className="py-12 lg:py-16 px-4">
       <div className="max-w-5xl mx-auto space-y-12">
+        <h2 className="sr-only">Yang Bisa Kamu Lakukan dengan Inspira POS</h2>
         {ROWS.map((row, i) => {
           const imageFirst = i % 2 === 1;
           return (
