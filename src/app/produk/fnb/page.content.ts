@@ -1,19 +1,19 @@
-import { ClipboardList, Gauge, Gift, Wallet, CalendarClock, Building2, Megaphone, GraduationCap } from 'lucide-react';
+﻿import { ClipboardList, Gauge, Gift, Wallet, CalendarClock, Building2, Megaphone, GraduationCap } from 'lucide-react';
 import { kontakLink } from '@/lib/site';
 import { RESTO_ROWS, planFeaturesFromRows } from '@/components/Compare';
 import type { PricingPlan } from '@/components/PricingSection';
 
 export const FEATURES = [
-  { title: 'Table Management', desc: 'Kelola meja, nomor antrian, dan status pesanan dengan mudah.' },
-  { title: 'Kitchen Display', desc: 'Antrian pesanan langsung tampil di layar dapur, tanpa nota kertas.' },
-  { title: 'Multi-Outlet', desc: 'Kelola sampai 10 cabang dari satu dashboard terpusat.' },
-  { title: 'BOM & Resep', desc: 'Hitung harga pokok (HPP) dan kendalikan penggunaan bahan.' },
+  { title: 'Atur Meja & Antrian', desc: 'Kelola meja, nomor antrian, dan status pesanan dengan mudah.' },
+  { title: 'Layar Dapur (KDS)', desc: 'Antrian pesanan langsung tampil di layar dapur, tanpa nota kertas.' },
+  { title: 'Kelola Banyak Cabang', desc: 'Kelola sampai 10 cabang dari satu dashboard terpusat.' },
+  { title: 'Untung Tiap Menu, Otomatis', desc: 'Hitung harga pokok (HPP) dan kendalikan penggunaan bahan.' },
 ];
 
-// Add-on Resto — docs/PRICING.md §3. Kelompok 1 khusus Resto Basic (sudah bundled gratis
+// Add-on Resto â€” docs/PRICING.md Â§3. Kelompok 1 khusus Resto Basic (sudah bundled gratis
 // mulai Starter ke atas). Kelompok 2 berlaku di semua tier.
 export const ADDONS_BASIC: { icon: typeof ClipboardList; name: string; desc: string; price: string }[] = [
-  { icon: ClipboardList, name: 'BOM resep otomatis + auto-disable menu', desc: 'Stok bahan berkurang otomatis, menu nonaktif saat habis', price: 'Rp 99.000/bln' },
+  { icon: ClipboardList, name: 'Resep Otomatis + Menu Nonaktif Sendiri', desc: 'Stok bahan berkurang otomatis, menu nonaktif saat habis', price: 'Rp 99.000/bln' },
   { icon: Gauge, name: 'Dashboard stok real-time', desc: 'Pantau pergerakan stok detik itu juga', price: 'Rp 99.000/bln' },
   { icon: Gift, name: 'Loyalty program', desc: 'Poin & redeem untuk pelanggan setia', price: 'Rp 149.000/bln' },
   { icon: Wallet, name: 'Dashboard keuangan', desc: 'Laba rugi & arus kas lengkap', price: 'Rp 299.000/bln' },
@@ -30,7 +30,7 @@ export const PLANS: PricingPlan[] = [
     key: 'basic',
     name: 'Resto Basic',
     badge: 'Paling Terjangkau',
-    tagline: 'Untuk resto/kafe 1 outlet yang baru mulai sistemasi dapur & meja.',
+    tagline: 'Untuk resto/kafe 1 outlet yang baru mulai rapikan dapur & meja.',
     price: { monthly: 'Rp 599.000/bln', yearly: 'Rp 5.999.000/thn', setup: 'Rp 799.000', setupYearly: 'Rp 399.500' },
     ctaLabel: 'Konsultasi Basic',
     ctaHref: kontakLink('Halo, saya mau konsultasi iPOS FnB Basic untuk restoran saya.'),
@@ -39,7 +39,7 @@ export const PLANS: PricingPlan[] = [
   {
     key: 'starter',
     name: 'Resto Starter',
-    tagline: 'Untuk resto/kafe 1–3 outlet yang butuh stok & BOM otomatis.',
+    tagline: 'Untuk resto/kafe 1â€“3 outlet yang butuh stok & BOM otomatis.',
     price: { monthly: 'Rp 999.000/bln', yearly: 'Rp 9.999.000/thn', setup: 'Rp 1.499.000', setupYearly: 'Rp 749.500' },
     ctaLabel: 'Konsultasi Starter',
     ctaHref: kontakLink('Halo, saya mau konsultasi iPOS FnB Starter untuk restoran saya.'),
@@ -66,3 +66,5 @@ export const PLANS: PricingPlan[] = [
     features: planFeaturesFromRows(RESTO_ROWS, 3, 3),
   },
 ];
+
+
