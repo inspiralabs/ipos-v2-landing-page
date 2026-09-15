@@ -33,7 +33,7 @@ export function Navbar() {
         scrolled ? 'bg-surface/95 border-line shadow-[0_8px_24px_rgba(110,21,15,0.06)]' : 'bg-surface/70 border-transparent shadow-none',
       )}
     >
-      <div className={cn('max-w-6xl mx-auto px-4 sm:px-6 flex items-center gap-6 transition-[height] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]', scrolled ? 'h-14' : 'h-16')}>
+      <div className={cn('max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center gap-6 origin-top transition-transform duration-300 ease-[cubic-bezier(0.22,1,0.36,1)]', scrolled && 'scale-y-[0.875]')}>
         <Link href="/" className="flex items-center gap-2 shrink-0">
           <Image src="/inspirapos-icon.svg" alt="" width={32} height={32} className="rounded-lg" />
           <span className="font-extrabold text-maroon-deep text-lg">Inspira POS</span>
@@ -52,7 +52,7 @@ export function Navbar() {
 
         <Sheet open={open} onOpenChange={setOpen}>
           <SheetTrigger asChild>
-            <button className="md:hidden ml-auto p-2 min-h-11 text-charcoal/70" aria-label="Buka menu">
+            <button className="md:hidden ml-auto p-2 min-h-11 min-w-11 text-charcoal/70" aria-label="Buka menu">
               <Menu className="h-5 w-5" aria-hidden />
             </button>
           </SheetTrigger>
