@@ -7,13 +7,18 @@ import Image from 'next/image';
 // not injected later by an effect - an effect (layout or not) only runs after that first
 // HTML already painted, which is what let the homepage flash before the splash appeared.
 // Root layout also doesn't remount on client-side <Link> navigation, so this only shows
-// on a real reload/first visit - no sessionStorage gate needed.
+// on a real reload/first visit. The 1200ms hold itself is skipped on repeat reloads in the
+// same tab (sessionStorage) and for prefers-reduced-motion, so a user who refreshes mid-task
+// isn't taxed 1.2s every time.
 export function SplashScreen() {
   const [fading, setFading] = useState(false);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
-    const hold = setTimeout(() => setFading(true), 1200);
+    const alreadyShown = sessionStorage.getItem('ipos-splash-shown') === '1';
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    sessionStorage.setItem('ipos-splash-shown', '1');
+    const hold = setTimeout(() => setFading(true), alreadyShown || reduceMotion ? 0 : 1200);
     return () => clearTimeout(hold);
   }, []);
 
