@@ -43,7 +43,7 @@ export function ProductHero({ badge, title, description, image, imageAlt, featur
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.75, ease: EASE }}
       >
-        <Image src={image} alt={imageAlt} fill priority className="object-cover" />
+        <Image src={image} alt={imageAlt} fill priority sizes="(max-width: 1024px) 100vw, 50vw" className="object-cover" />
       </motion.div>
 
       <motion.div
@@ -57,6 +57,11 @@ export function ProductHero({ badge, title, description, image, imageAlt, featur
         <motion.h1 variants={item} className="text-3xl font-extrabold text-charcoal mb-3">{title}</motion.h1>
         <motion.p variants={item} className="text-charcoal/60 mb-6">{description}</motion.p>
 
+        <motion.div variants={item} className="mb-6">
+          <Button asChild variant="gold">
+            <Link href={ctaHref}>{ctaLabel}</Link>
+          </Button>
+        </motion.div>
 
         <motion.div variants={item} className="grid sm:grid-cols-2 gap-3">
           {features.map((f) => (
