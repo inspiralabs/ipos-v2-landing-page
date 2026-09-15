@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { ChefHat, MessageCircle, Check } from 'lucide-react';
-import { waLink, kontakLink } from '@/lib/site';
+import { waLink } from '@/lib/site';
 import { Faq } from '@/components/Faq';
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal';
 import { Hero } from '@/components/Hero';
@@ -148,7 +148,7 @@ export default function HomePage() {
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
             <Button asChild variant="gold"><Link href="/demo">Coba Gratis 14 Hari</Link></Button>
             <Button asChild variant="wa">
-              <a href={kontakLink('Halo, saya mau konsultasi paket Inspira POS untuk usaha saya.')} target="_blank" rel="noreferrer">
+              <a href={waLink('Halo, saya mau konsultasi paket Inspira POS untuk usaha saya.')} target="_blank" rel="noreferrer">
                 <MessageCircle className="w-4 h-4" aria-hidden /> Chat WhatsApp
               </a>
             </Button>

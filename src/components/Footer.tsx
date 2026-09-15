@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { MessageCircle, Mail, Globe } from 'lucide-react';
-import { CONTACT, kontakLink } from '@/lib/site';
+import { CONTACT, waLink } from '@/lib/site';
 
 export function Footer() {
   return (
@@ -35,7 +35,7 @@ export function Footer() {
           <p className="text-sm font-semibold text-cream mb-3">Kontak</p>
           <ul className="space-y-2 text-sm">
             <li>
-              <a href={kontakLink('Halo, saya mau tanya tentang Inspira POS.')} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-gold-bright">
+              <a href={waLink('Halo, saya mau tanya tentang Inspira POS.')} target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:text-gold-bright">
                 <MessageCircle className="w-4 h-4 shrink-0" aria-hidden /> {CONTACT.waDisplay}
               </a>
             </li>

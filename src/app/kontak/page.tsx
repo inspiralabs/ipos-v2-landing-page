@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { MessageCircle, Mail, Globe } from 'lucide-react';
-import { CONTACT, kontakLink } from '@/lib/site';
+import { CONTACT, waLink } from '@/lib/site';
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal';
 import { Card } from '@/components/ui/card';
 
@@ -19,10 +19,10 @@ export default function KontakPage() {
         <RevealGroup className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6" stagger={0.06}>
           <RevealItem>
             <Card asChild className="card-brand p-6 text-left block">
-              <a href={kontakLink('Halo Inspira POS, saya ingin bertanya.')} target="_blank" rel="noreferrer">
+              <a href={waLink('Halo Inspira POS, saya ingin bertanya.')} target="_blank" rel="noreferrer">
                 <div className="w-fit rounded-lg bg-whatsapp/10 p-3 text-whatsapp mb-3"><MessageCircle className="w-6 h-6" aria-hidden /></div>
                 <h3 className="font-bold text-charcoal mb-1">WhatsApp</h3>
-                <p className="text-sm text-charcoal/60">Isi form kebutuhanmu, tim kami balas via WhatsApp</p>
+                <p className="text-sm text-charcoal/60">Chat langsung, tim kami balas dari HP</p>
                 <p className="text-sm text-maroon-deep font-semibold mt-2">{CONTACT.waDisplay}</p>
               </a>
             </Card>
@@ -49,7 +49,7 @@ export default function KontakPage() {
           </RevealItem>
         </RevealGroup>
         <Reveal>
-          <p className="mt-10 text-sm text-charcoal/50">
+          <p className="mt-10 text-sm text-charcoal/70">
             Atau langsung <Link href="/demo" className="text-maroon-deep font-semibold hover:underline">daftar trial gratis</Link> dan tim kami yang akan menghubungi kamu.
           </p>
         </Reveal>
