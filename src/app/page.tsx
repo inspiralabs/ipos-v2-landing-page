@@ -51,7 +51,7 @@ export default function HomePage() {
                       ))}
                     </ul>
                     <Button asChild variant={dark ? 'dark' : 'gold'} className="text-center">
-                      <Link href={p.href}>Lihat Fitur & Harga</Link>
+                      <Link href={p.href}>{p.ctaLabel}</Link>
                     </Button>
                   </Card>
                 </RevealItem>
@@ -123,7 +123,7 @@ export default function HomePage() {
               Dari <b>D kriuk Fried Chicken Jatiluhur</b> sampai <b>Mie Jebew Jontor</b> - warung-warung ini
               mencatat penjualan hariannya dengan Inspira POS. Bukan aplikasi percobaan; kasir yang dipakai kerja.
             </p>
-            <p className="text-xs text-charcoal/50">
+            <p className="text-xs text-charcoal/70">
               Sudah pakai Inspira POS dan mau ceritamu tampil di sini? <a className="text-maroon-deep font-semibold hover:underline" href={waLink('Halo, saya pengguna Inspira POS dan mau berbagi pengalaman.')} target="_blank" rel="noreferrer">Kabari kami</a>.
             </p>
           </Card>
@@ -144,7 +144,7 @@ export default function HomePage() {
       <section className="py-16 lg:py-20 px-4 section-maroon">
         <Reveal className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-extrabold mb-3">Coba Dulu 14 Hari. Gratis, Tanpa Syarat.</h2>
-          <p className="text-white/70 mb-8">Kalau cocok, lanjut. Kalau tidak, data kamu tetap milik kamu. Masih ragu? Ngobrol dulu saja - kami bantu pilihkan, bukan jualan paket paling mahal.</p>
+          <p className="text-white/70 mb-8">Kalau cocok, lanjut. Kalau tidak, data kamu tetap milik kamu. Masih ragu? Ngobrol dulu saja - kami bantu pilih paket yang cocok sama usahamu.</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center mb-8">
             <Button asChild variant="gold"><Link href="/demo">Coba Gratis 14 Hari</Link></Button>
             <Button asChild variant="wa">

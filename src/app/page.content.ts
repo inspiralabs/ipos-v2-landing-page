@@ -14,6 +14,7 @@ export const PRODUCTS = [
     title: 'Cukup Rp 299 ribu, jalan selamanya',
     points: ['100% tanpa internet - data aman di HP kamu', 'Tanpa langganan, tanpa biaya tersembunyi', 'Stok, struk thermal, laporan harian - lengkap'],
     href: '/produk/offline',
+    ctaLabel: 'Lihat Paket Offline',
   },
   {
     badge: 'iPos Cloud',
@@ -22,6 +23,7 @@ export const PRODUCTS = [
     title: 'Mulai Rp 149 ribu/bulan, laporan real-time',
     points: ['Cek penjualan dari mana saja, kapan saja', 'Struk dikirim via WhatsApp, terima QRIS', 'Tetap bisa jualan saat internet putus'],
     href: '/produk/umkm',
+    ctaLabel: 'Coba Gratis 14 Hari',
   },
   {
     badge: 'F&B / Resto',
@@ -30,6 +32,7 @@ export const PRODUCTS = [
     title: 'Mulai Rp 599 ribu/bulan, sistem lengkap',
     points: ['Pesanan langsung tampil di layar dapur (KDS)', 'Pelanggan pesan sendiri lewat QR di meja', 'Kelola sampai 10 cabang dari satu dashboard'],
     href: '/produk/fnb',
+    ctaLabel: 'Coba Gratis 14 Hari',
   },
 ];
 
