@@ -103,9 +103,9 @@ export function PricingSection({
                       {f.included ? (
                         <Check className={`w-4 h-4 shrink-0 mt-0.5 ${dark ? 'text-gold-bright' : 'text-maroon-deep'}`} aria-hidden />
                       ) : (
-                        <X className={`w-4 h-4 shrink-0 mt-0.5 ${dark ? 'text-white/45' : 'text-charcoal/45'}`} aria-hidden />
+                        <X className={`w-4 h-4 shrink-0 mt-0.5 ${dark ? 'text-white/60' : 'text-charcoal/60'}`} aria-hidden />
                       )}
-                      <span className={f.included ? (dark ? 'text-white/85' : 'text-charcoal/70') : dark ? 'text-white/60' : 'text-charcoal/60'}>
+                      <span className={f.included ? (dark ? 'text-white/85' : 'text-charcoal/70') : dark ? 'text-white/70' : 'text-charcoal/70'}>
                         {f.label}
                       </span>
                     </li>

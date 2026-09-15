@@ -133,7 +133,7 @@ Catatan: ${form.notes}`;
             <Button asChild variant="gold">
               <a href={appUrl.toString()}>Buka Aplikasi &amp; Setup Toko</a>
             </Button>
-            <p className="text-xs text-charcoal/50 mt-4">Butuh bantuan? Tim kami tetap standby via WhatsApp.</p>
+            <p className="text-xs text-charcoal/70 mt-4">Butuh bantuan? Tim kami tetap standby via WhatsApp.</p>
           </Reveal>
         </main>
       );
@@ -172,7 +172,7 @@ Catatan: ${form.notes}`;
             <RevealItem>
               <Label htmlFor="phone">Nomor WhatsApp</Label>
               <div className="flex">
-                <span className="inline-flex items-center rounded-l-lg border border-r-0 border-gray-300 bg-cream px-3 text-sm text-charcoal/60">
+                <span className="inline-flex items-center rounded-l-lg border border-r-0 border-line bg-cream px-3 text-sm text-charcoal/60">
                   +62
                 </span>
                 <Input

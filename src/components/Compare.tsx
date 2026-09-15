@@ -117,7 +117,7 @@ export function CompareTable({ headers, rows }: { headers: string[]; rows: strin
                       {v === '✓' ? (
                         <Check className="w-4 h-4 text-maroon-deep mx-auto" aria-label="Termasuk" />
                       ) : v === '—' ? (
-                        <X className="w-4 h-4 text-charcoal/45 mx-auto" aria-label="Tidak termasuk" />
+                        <X className="w-4 h-4 text-charcoal/60 mx-auto" aria-label="Tidak termasuk" />
                       ) : (
                         <span className="text-charcoal/80">{v}</span>
                       )}

@@ -132,10 +132,10 @@ export function Hero() {
         <button
           type="button"
           onClick={() => setUserPaused((p) => !p)}
-          aria-label={playing ? 'Jeda slide otomatis' : 'Lanjutkan slide otomatis'}
+          aria-label={userPaused ? 'Lanjutkan slide otomatis' : 'Jeda slide otomatis'}
           className="min-h-11 min-w-11 grid place-items-center text-white/70 hover:text-white"
         >
-          {playing ? <Pause className="w-4 h-4" aria-hidden /> : <Play className="w-4 h-4" aria-hidden />}
+          {userPaused ? <Play className="w-4 h-4" aria-hidden /> : <Pause className="w-4 h-4" aria-hidden />}
         </button>
       </div>
     </section>

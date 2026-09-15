@@ -22,7 +22,7 @@ export const PRODUCTS = [
     q: 'Punya satu warung atau kafe, ingin pantau omzet dari HP?',
     title: 'Mulai Rp 149 ribu/bulan, laporan real-time',
     points: ['Cek penjualan dari mana saja, kapan saja', 'Struk dikirim via WhatsApp, terima QRIS', 'Tetap bisa jualan saat internet putus'],
-    href: '/produk/umkm',
+    href: '/demo?product=umkm',
     ctaLabel: 'Coba Gratis 14 Hari',
   },
   {
@@ -31,7 +31,7 @@ export const PRODUCTS = [
     q: 'Restoran dengan dapur, meja, atau banyak cabang?',
     title: 'Mulai Rp 599 ribu/bulan, sistem lengkap',
     points: ['Pesanan langsung tampil di layar dapur (KDS)', 'Pelanggan pesan sendiri lewat QR di meja', 'Kelola sampai 10 cabang dari satu dashboard'],
-    href: '/produk/fnb',
+    href: '/demo?product=fnb',
     ctaLabel: 'Coba Gratis 14 Hari',
   },
 ];

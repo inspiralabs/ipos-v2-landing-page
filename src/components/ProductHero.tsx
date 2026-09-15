@@ -63,6 +63,7 @@ export function ProductHero({ badge, title, description, image, imageAlt, featur
           </Button>
         </motion.div>
 
+        <h2 className="sr-only">Fitur Utama</h2>
         <motion.div variants={item} className="grid sm:grid-cols-2 gap-3">
           {features.map((f) => (
             <Card key={f.title} className="card-brand p-4">
