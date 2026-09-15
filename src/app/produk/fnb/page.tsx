@@ -1,4 +1,4 @@
-﻿import Link from 'next/link';
+import Link from 'next/link';
 import type { Metadata } from 'next';
 import { SegmentHeader, CompareTable, RESTO_ROWS } from '@/components/Compare';
 import { kontakLink } from '@/lib/site';
@@ -19,7 +19,7 @@ export default function FnbPage() {
     <main className="py-14 px-4">
       <div className="max-w-7xl mx-auto">
         <ProductHero
-          badge="iPOS FnB Â· Resto"
+          badge="iPOS FnB · Resto"
           title="Sistem POS Lengkap untuk Restoran & Kafe"
           description="Dari denah meja hingga layar dapur, iPOS FnB menyiapkan semua yang kamu butuhkan untuk operasional restoran yang lancar."
           image="https://assets.inspirapos.biz.id/hero-images/ipos-fnb-hero.webp"
@@ -47,7 +47,7 @@ export default function FnbPage() {
           />
         </div>
 
-        {/* Add-on â€” untuk Resto Basic yang butuh fitur individual, atau semua tier yang butuh outlet/promo/training tambahan */}
+        {/* Add-on — untuk Resto Basic yang butuh fitur individual, atau semua tier yang butuh outlet/promo/training tambahan */}
         <div className="mt-14">
           <Reveal>
             <SegmentHeader
@@ -110,4 +110,3 @@ export default function FnbPage() {
     </main>
   );
 }
-

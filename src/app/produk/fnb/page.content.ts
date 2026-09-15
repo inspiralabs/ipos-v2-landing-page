@@ -1,4 +1,4 @@
-﻿import { ClipboardList, Gauge, Gift, Wallet, CalendarClock, Building2, Megaphone, GraduationCap } from 'lucide-react';
+import { ClipboardList, Gauge, Gift, Wallet, CalendarClock, Building2, Megaphone, GraduationCap } from 'lucide-react';
 import { kontakLink } from '@/lib/site';
 import { RESTO_ROWS, planFeaturesFromRows } from '@/components/Compare';
 import type { PricingPlan } from '@/components/PricingSection';
@@ -10,7 +10,7 @@ export const FEATURES = [
   { title: 'Untung Tiap Menu, Otomatis', desc: 'Hitung harga pokok (HPP) dan kendalikan penggunaan bahan.' },
 ];
 
-// Add-on Resto â€” docs/PRICING.md Â§3. Kelompok 1 khusus Resto Basic (sudah bundled gratis
+// Add-on Resto — docs/PRICING.md §3. Kelompok 1 khusus Resto Basic (sudah bundled gratis
 // mulai Starter ke atas). Kelompok 2 berlaku di semua tier.
 export const ADDONS_BASIC: { icon: typeof ClipboardList; name: string; desc: string; price: string }[] = [
   { icon: ClipboardList, name: 'Resep Otomatis + Menu Nonaktif Sendiri', desc: 'Stok bahan berkurang otomatis, menu nonaktif saat habis', price: 'Rp 99.000/bln' },
@@ -39,7 +39,7 @@ export const PLANS: PricingPlan[] = [
   {
     key: 'starter',
     name: 'Resto Starter',
-    tagline: 'Untuk resto/kafe 1â€“3 outlet yang butuh stok & BOM otomatis.',
+    tagline: 'Untuk resto/kafe 1–3 outlet yang butuh stok & BOM otomatis.',
     price: { monthly: 'Rp 999.000/bln', yearly: 'Rp 9.999.000/thn', setup: 'Rp 1.499.000', setupYearly: 'Rp 749.500' },
     ctaLabel: 'Konsultasi Starter',
     ctaHref: kontakLink('Halo, saya mau konsultasi iPOS FnB Starter untuk restoran saya.'),
@@ -66,5 +66,3 @@ export const PLANS: PricingPlan[] = [
     features: planFeaturesFromRows(RESTO_ROWS, 3, 3),
   },
 ];
-
-
