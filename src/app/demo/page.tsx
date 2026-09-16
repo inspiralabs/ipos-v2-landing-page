@@ -207,11 +207,11 @@ Catatan: ${form.notes}`;
               </Select>
             </RevealItem>
             {form.business_type === 'lainnya' && (
-              <RevealItem>
+              <div>
                 <Label htmlFor="business_type_other">Jenis Usaha Lainnya</Label>
                 <Input id="business_type_other" type="text" value={form.business_type_other} onChange={(e) => set('business_type_other', e.target.value)} />
                 {errors.business_type_other && <p className="mt-1 text-xs text-maroon-vibrant">{errors.business_type_other}</p>}
-              </RevealItem>
+              </div>
             )}
             <RevealItem>
               <Label htmlFor="product_interest">Produk yang Diminati</Label>
@@ -226,11 +226,11 @@ Catatan: ${form.notes}`;
               </Select>
             </RevealItem>
             {form.product_interest === 'unknown' && (
-              <RevealItem>
+              <div>
                 <Label htmlFor="notes">Catatan</Label>
                 <Textarea id="notes" rows={3} placeholder="Ceritakan usahamu, biar admin bisa bantu pilihkan produk yang cocok." value={form.notes} onChange={(e) => set('notes', e.target.value)} />
                 {errors.notes && <p className="mt-1 text-xs text-maroon-vibrant">{errors.notes}</p>}
-              </RevealItem>
+              </div>
             )}
           </RevealGroup>
           {error && <p className="text-xs text-maroon-vibrant">{error}</p>}
