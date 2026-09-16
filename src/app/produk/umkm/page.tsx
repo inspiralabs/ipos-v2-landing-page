@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { SegmentHeader } from '@/components/Compare';
+import { SegmentHeader, CompareTable, UMKM_ROWS } from '@/components/Compare';
 import { kontakLink } from '@/lib/site';
 import { Reveal, RevealGroup, RevealItem } from '@/components/Reveal';
 import { ProductHero } from '@/components/ProductHero';
@@ -36,7 +36,13 @@ export default function UmkmPage() {
             desc="Untuk warung dan kafe 1 outlet. Pro cocok kalau kasir kamu lebih dari satu orang dan butuh shift kasir, split bill, serta otorisasi pembatalan transaksi."
           />
         </Reveal>
-        <PricingSection plans={PLANS} billing />
+        <PricingSection plans={PLANS} billing compareId="bandingkan" />
+
+        {/* Tabel ringkas - pelengkap card di atas untuk yang mau bandingkan semua baris fitur sekaligus */}
+        <div id="bandingkan" className="mt-10 scroll-mt-24">
+          <p className="text-sm font-bold text-charcoal text-center mb-4">Atau Bandingkan Semua Fitur Sekaligus</p>
+          <CompareTable headers={PLANS.map((p) => p.name)} rows={UMKM_ROWS.slice(3)} />
+        </div>
 
         {/* Add-on — pasang yang dibutuhkan saja, kapan saja */}
         <div className="mt-14">

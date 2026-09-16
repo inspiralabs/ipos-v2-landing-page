@@ -73,11 +73,14 @@ export const RESTO_ROWS: string[][] = [
 // Turunkan checklist fitur kartu harga langsung dari baris tabel perbandingan (satu sumber data,
 // supaya kartu & tabel detail tidak pernah beda). skip = jumlah baris harga di awal (sebelum baris
 // fitur mulai): 1 untuk Offline (cuma "Harga"), 3 untuk UMKM/Resto (Bulanan, Tahunan, Setup).
+// `differentiator` menandai baris yang nilainya beda antar tier produk ini — dipakai kartu harga
+// untuk memprioritaskan fitur pembeda di ringkasannya, bukan fitur yang sama di semua tier.
 export function planFeaturesFromRows(rows: string[][], skip: number, col: number) {
   return rows.slice(skip).map(([label, ...vals]) => {
     const v = vals[col];
     const isYesNo = v === '✓' || v === '—';
-    return { label: isYesNo ? label : `${label}: ${v}`, included: v !== '—' };
+    const differentiator = !vals.every((x) => x === vals[0]);
+    return { label: isYesNo ? label : `${label}: ${v}`, included: v !== '—', differentiator };
   });
 }
 

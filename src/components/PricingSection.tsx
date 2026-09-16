@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Check, X, ArrowRight } from 'lucide-react';
+import { Check, ArrowRight } from 'lucide-react';
 import { RevealGroup, RevealItem } from './Reveal';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -17,17 +17,24 @@ export type PricingPlan = {
   price: { oneTime?: string; monthly?: string; yearly?: string; setup?: string; setupYearly?: string };
   ctaLabel: string;
   ctaHref: string;
-  features: { label: string; included: boolean }[];
+  features: { label: string; included: boolean; differentiator?: boolean }[];
 };
+
+// Kartu cuma menampilkan ringkasan fitur (pembeda tier ini duluan), bukan checklist penuh —
+// daftar lengkap (termasuk yang tidak termasuk) ada di tabel banding lewat link "Lihat semua fitur".
+const CARD_FEATURE_LIMIT = 6;
 
 export function PricingSection({
   plans,
   billing,
   note,
+  compareId,
 }: {
   plans: PricingPlan[];
   billing?: boolean;
   note?: string;
+  /** id section tabel banding lengkap di halaman ini, kalau ada — dipakai untuk link "Lihat semua fitur". */
+  compareId?: string;
 }) {
   const [mode, setMode] = useState<'monthly' | 'yearly'>('monthly');
   const fourUp = plans.length >= 4;
@@ -68,6 +75,12 @@ export function PricingSection({
           const suffix = showYearly ? '/tahun' : p.price.oneTime ? 'sekali bayar / perangkat' : '/bulan';
           const setupPrice = showYearly ? p.price.setupYearly ?? p.price.setup : p.price.setup;
 
+          const included = p.features.filter((f) => f.included);
+          const displayFeatures = [
+            ...included.filter((f) => f.differentiator),
+            ...included.filter((f) => !f.differentiator),
+          ].slice(0, CARD_FEATURE_LIMIT);
+
           return (
             <RevealItem key={p.key}>
               <Card className={`relative flex flex-col rounded-xl p-6 sm:p-8 ${dark ? 'card-dark' : 'card-brand'}`}>
@@ -97,20 +110,23 @@ export function PricingSection({
                   )}
                 </div>
 
-                <ul className="space-y-2.5 mb-6 flex-1 text-sm">
-                  {p.features.map((f) => (
+                <ul className="space-y-2.5 mb-3 flex-1 text-sm">
+                  {displayFeatures.map((f) => (
                     <li key={f.label} className="flex items-start gap-2">
-                      {f.included ? (
-                        <Check className={`w-4 h-4 shrink-0 mt-0.5 ${dark ? 'text-gold-bright' : 'text-maroon-deep'}`} aria-hidden />
-                      ) : (
-                        <X className={`w-4 h-4 shrink-0 mt-0.5 ${dark ? 'text-white/60' : 'text-charcoal/60'}`} aria-hidden />
-                      )}
-                      <span className={f.included ? (dark ? 'text-white/85' : 'text-charcoal/70') : dark ? 'text-white/70' : 'text-charcoal/70'}>
-                        {f.label}
-                      </span>
+                      <Check className={`w-4 h-4 shrink-0 mt-0.5 ${dark ? 'text-gold-bright' : 'text-maroon-deep'}`} aria-hidden />
+                      <span className={dark ? 'text-white/85' : 'text-charcoal/70'}>{f.label}</span>
                     </li>
                   ))}
                 </ul>
+
+                {compareId && (
+                  <a
+                    href={`#${compareId}`}
+                    className={`text-xs font-semibold mb-6 hover:underline ${dark ? 'text-gold-bright' : 'text-maroon-deep'}`}
+                  >
+                    Lihat semua fitur →
+                  </a>
+                )}
 
                 <Button asChild variant={dark ? 'gold' : 'outline'} className="w-full">
                   <a href={p.ctaHref} target="_blank" rel="noreferrer">

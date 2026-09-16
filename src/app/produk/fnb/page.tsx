@@ -36,10 +36,10 @@ export default function FnbPage() {
             desc="Semua paket sudah termasuk layar dapur, denah meja, dan QR order per meja. Basic cocok untuk 1 outlet yang baru mulai; Starter ke atas menambah stok bahan & resep otomatis; naik paket lagi kalau cabang bertambah atau butuh laporan keuangan konsolidasi."
           />
         </Reveal>
-        <PricingSection plans={PLANS} billing />
+        <PricingSection plans={PLANS} billing compareId="bandingkan" />
 
         {/* Tabel ringkas - pelengkap card di atas untuk yang mau bandingkan semua baris fitur sekaligus */}
-        <div className="mt-10">
+        <div id="bandingkan" className="mt-10 scroll-mt-24">
           <p className="text-sm font-bold text-charcoal text-center mb-4">Atau Bandingkan Semua Fitur Sekaligus</p>
           <CompareTable
             headers={PLANS.map((p) => p.name)}

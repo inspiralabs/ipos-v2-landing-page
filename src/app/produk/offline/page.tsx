@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { SegmentHeader } from '@/components/Compare';
+import { SegmentHeader, CompareTable, OFFLINE_ROWS } from '@/components/Compare';
 import { Reveal } from '@/components/Reveal';
 import { ProductHero } from '@/components/ProductHero';
 import { PricingSection } from '@/components/PricingSection';
@@ -38,7 +38,14 @@ export default function OfflinePage() {
         <PricingSection
           plans={PLANS}
           note="Sudah pakai Lite? Upgrade ke Pro cukup bayar selisih Rp 199.000, data kamu tetap utuh."
+          compareId="bandingkan"
         />
+
+        {/* Tabel ringkas - pelengkap card di atas untuk yang mau bandingkan semua baris fitur sekaligus */}
+        <div id="bandingkan" className="mt-10 scroll-mt-24">
+          <p className="text-sm font-bold text-charcoal text-center mb-4">Atau Bandingkan Semua Fitur Sekaligus</p>
+          <CompareTable headers={PLANS.map((p) => p.name)} rows={OFFLINE_ROWS.slice(1)} />
+        </div>
 
         <Reveal className="mt-10">
           <Card className="card-gold p-6 sm:p-8 text-center">
